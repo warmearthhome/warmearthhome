@@ -31,7 +31,10 @@
 
 5. **Key Highlights Tabs**  
    - **Overview**：3–4 个 bullet（材质、光效、适用空间、风格）  
-   - **Specifications**：表格 (尺寸、材质、灯口、重量、安装方式、保修)  
+   - **Specifications**：
+     - 表格 (尺寸、材质、灯口、重量、安装方式、保修)
+     - **尺寸图 PDF**：提供可下载的产品尺寸图 PDF（包含三视图、关键尺寸标注、安装空间要求），标注文件大小（例如 "Size Guide – PDF · 1.2 MB"）
+     - 尺寸图应清晰标注：高度、宽度、深度、吊线长度（如适用）、安装孔距等关键尺寸
    - **Installation & Care**：PDF 下载、安装难度评级、清洁提示（标注文件大小）  
    - **Shipping & Returns**：链接至 Support
 
@@ -92,6 +95,7 @@
 | `view_item_list` | 浏览 Related Products | list_name |
 | `select_promotion` | 点击 Inspiration 区 CTA | promo_name |
 | `download_installation` | 下载安装指南 | product_id |
+| `download_size_guide` | 下载尺寸图 PDF | product_id / file_size |
 | `sticky_cta_click` | 移动端点击 Sticky CTA | product_id |
 
 ---
@@ -100,7 +104,9 @@
 
 - **Compare / Size Guide** 模块（对比尺寸、光源、安装方式）  
   - 在 Specifications 标签下添加 “Compare with similar products” 链接
-  - 提供可下载的 Size Guide PDF（标注文件大小）
+  - **尺寸图 PDF**：每个产品提供详细的尺寸图 PDF（三视图 + 关键尺寸标注），帮助用户判断是否适合其空间
+  - 尺寸图应包含：产品轮廓、关键尺寸（高度/宽度/深度）、安装空间要求、吊线长度（如适用）
+  - PDF 文件大小控制在 2MB 以内，使用清晰矢量图或高分辨率位图
 - **Energy Efficiency** 评级图标视觉化展示  
   - 在 Primary Info Panel 中显示 Energy Star 或类似评级（如适用）
 - **AR 预览 / Room Planner**（Phase 3）
@@ -111,11 +117,13 @@
 
 - [ ] 变体切换图片正常  
 - [ ] 所有规格字段完整且正确  
+- [ ] 尺寸图 PDF 可下载且内容准确（三视图、尺寸标注清晰）  
 - [ ] 加入购物车与 mini cart 交互顺畅  
 - [ ] Gallery、视频在移动端无异常  
 - [ ] Sticky CTA 在移动端正常显示/隐藏  
 - [ ] Schema markup 验证无报错  
-- [ ] 所有 CTA 链接正确（Inspiration / Support）
+- [ ] 所有 CTA 链接正确（Inspiration / Support）  
+- [ ] 尺寸图 PDF 文件大小合理（<2MB），下载速度可接受
 
 ---
 
