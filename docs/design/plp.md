@@ -8,6 +8,11 @@
 
 ## 1️⃣ 页面结构概览
 
+**Top Intro Paragraph (≈50 words):**  
+在 Page Header 下方添加一段介绍性文字，包含 SEO 关键词与品牌调性。例如：
+
+> “Discover warm, natural lighting crafted for Australian homes. Our Modern Earth and Urban Glow collections bring calm, simple beauty to bedrooms, living rooms, and small spaces. Each piece is designed for easy installation and everyday comfort.”
+
 1. **Page Header**
    - 标题：根据入口展示（例如 “Modern Earth Series” 或 “Shop Bedroom”）
    - 面包屑：`Home > Shop > Modern Earth > Wall Lamps`

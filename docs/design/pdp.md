@@ -98,9 +98,12 @@
 
 ## 6️⃣ Future Enhancements
 
-- Compare / Size Guide 模块（对比尺寸、光源、安装方式）  
-- Energy Efficiency 评级图标  视觉化展示  
-- AR 预览 / Room Planner（Phase 3）
+- **Compare / Size Guide** 模块（对比尺寸、光源、安装方式）  
+  - 在 Specifications 标签下添加 “Compare with similar products” 链接
+  - 提供可下载的 Size Guide PDF（标注文件大小）
+- **Energy Efficiency** 评级图标视觉化展示  
+  - 在 Primary Info Panel 中显示 Energy Star 或类似评级（如适用）
+- **AR 预览 / Room Planner**（Phase 3）
 
 ---
 

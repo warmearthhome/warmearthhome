@@ -128,11 +128,13 @@ Use descriptive URLs (SEO-friendly slugs):
 
 ### A. Content Marketing (SEO + Inspiration)
 
-- Monthly Rhythm：
-  - Week 1：发布 Lighting Ideas 系列文章（SEO 关键词：rental lighting, cozy lighting）。
-  - Week 3：发布安装/空间实用 Tips，并在社交渠道二次分发。
-- 每季度 1 篇 “How to Choose” 教程  
-- 博客与产品双向内链（`Shop the Look`）
+**Monthly Content Rhythm：**
+- **Week 1**：发布 Lighting Ideas 系列文章（SEO 关键词：rental lighting, cozy lighting）。
+- **Week 3**：发布安装/空间实用 Tips，并在社交渠道二次分发。
+- **Week 4**：Email Digest + Product Highlights（推荐新产品 + 博客链接）
+
+每季度 1 篇 “How to Choose” 教程  
+博客与产品双向内链（`Shop the Look`）
 
 ### B. Email Marketing (Post-launch)
 
@@ -145,7 +147,9 @@ Use descriptive URLs (SEO-friendly slugs):
 ### C. Social & Community
 
 - Instagram：日常搭配 + 客户实拍  
-- Pinterest：先投放低预算 **Pinterest Ads**，引导到 Inspiration & PLP 页面  
+- Pinterest：先投放低预算 **Pinterest Ads**（推荐起始预算 $50-100/月），引导到 Inspiration & PLP 页面  
+  - 创建系列图板（Modern Earth / Urban Glow）
+  - 使用 Rich Pins 显示价格与库存
 - YouTube（阶段2）：安装指南 / 小空间布灯技巧
 
 ### D. Retargeting & Paid
