@@ -1,0 +1,28 @@
+# 代码归属文件
+# 此文件定义谁负责审查特定路径的代码变更
+# 语法: 路径 @用户名
+
+# 项目所有者 - 所有文件默认由 lijie520240 负责
+* @lijie520240
+
+# WordPress 相关文件
+*.php @lijie520240
+functions.php @lijie520240
+setup-*.php @lijie520240
+
+# 样式文件
+*.css @lijie520240
+*.scss @lijie520240
+
+# 模板文件
+*.html @lijie520240
+
+# 配置文件
+*.json @lijie520240
+*.yml @lijie520240
+*.yaml @lijie520240
+
+# 文档文件
+*.md @lijie520240
+docs/ @lijie520240
+
