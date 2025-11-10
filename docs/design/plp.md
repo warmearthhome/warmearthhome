@@ -2,7 +2,7 @@
 
 > 版本：Brand定位版 · 2025-11-10
 > 适用对象：Modern Earth Series、Urban Glow Series 及房间筛选页
-> 目标：让用户快速过滤并找到心仪灯具，同时保持品牌的 Warm / Calm / Simple 风格。
+> 目标：让用户快速过滤并找到心仪灯具，同时保持品牌的 Warm / Calm / Simple 风格，覆盖“modern lighting australia”“cozy rental lighting”等核心关键词。
 
 ---
 
@@ -11,7 +11,7 @@
 1. **Page Header**
    - 标题：根据入口展示（例如 “Modern Earth Series” 或 “Shop Bedroom”）
    - 面包屑：`Home > Shop > Modern Earth > Wall Lamps`
-   - 描述：1 条 1~2 句简介，强调系列/场景的氛围感。
+   - 描述：1 条 1~2 句简介，包含材质、空间、安装关键词（例如 “Natural oak wall lamps for calm Australian homes”）。
 
 2. **Filter & Sort Bar**
    - 位置：页眉下方固定
@@ -25,6 +25,9 @@
        - Installation Type（Hardwired / Plug-in）
      - Sort by：`Recommended`（默认）、`Price ↑ / ↓`、`Newest`
    - 行动按钮：`Clear All`、移动端提供快速标签（pill 格式）。
+   - **Empty State**：若筛选结果为空，显示暖心提示：
+     > “We don’t have a perfect glow yet — try removing a filter or browse Urban Glow favourites.”
+     并推荐 4 个热销产品。
 
 3. **Product Grid**
    - 栅格：桌面端 3 列，平板 2 列，手机 1 列
@@ -40,6 +43,7 @@
    - 每浏览 9 件产品后插入 1 条“搭配建议”横幅：
      - 图片 + “Seen in modern living rooms”
      - CTA：`Shop the Space`
+   - **移动端**：Lifestyle 行转换为纵向堆叠卡片（图片在上，文字按钮在下），确保滑动体验顺畅。
 
 5. **Pagination / Load More**
    - 默认一次加载 12 个产品
@@ -83,6 +87,7 @@
 | `filter_applied` | 应用筛选条件 | filter_name / filter_value |
 | `quick_view_open` | 打开 Quick View | product_id |
 | `add_to_cart` | 快捷加入购物车 | product_id / quantity |
+| `empty_state_view` | 触发空结果提示 | filter_combination |
 
 GA4 + Meta Pixel 需同步事件；`filter_applied` 的数据用于分析热门筛选项。
 
@@ -114,6 +119,7 @@ GA4 + Meta Pixel 需同步事件；`filter_applied` 的数据用于分析热门�
 - [ ] Lazy load 图片生效
 - [ ] 面包屑链接无 404
 - [ ] GA4 / Pixel 事件触发正确
+- [ ] 空状态提示与推荐产品正确渲染
 
 ---
 

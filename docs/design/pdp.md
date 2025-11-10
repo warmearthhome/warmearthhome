@@ -17,6 +17,7 @@
 
 3. **Primary Info Panel**  
    - 产品名称 + 系列标签（Modern Earth / Urban Glow）  
+   - Energy Efficiency Tag（例如 `Warm LED · 6W · 3000K`）  
    - 简短描述：1 句强调核心优势（材质/光效/适合空间）  
    - 价格（含 GST）+ 分期提示（Afterpay 选项）  
    - 变体：颜色、尺寸、灯泡类型  
@@ -31,7 +32,7 @@
 5. **Key Highlights Tabs**  
    - **Overview**：3–4 个 bullet（材质、光效、适用空间、风格）  
    - **Specifications**：表格 (尺寸、材质、灯口、重量、安装方式、保修)  
-   - **Installation & Care**：PDF 下载、安装难度评级、清洁提示  
+   - **Installation & Care**：PDF 下载、安装难度评级、清洁提示（标注文件大小）  
    - **Shipping & Returns**：链接至 Support
 
 6. **Styled Shots / Inspiration**  
@@ -65,6 +66,7 @@
 
 - Gallery 支持键盘左右切换、触屏滑动  
 - Add to Cart 成功后出现侧边购物车（mini cart）  
+- 移动端启用 **Sticky Add-to-Cart Bar**（显示价格 + `Add to Cart` 按钮 + 心愿单），随滚动固定底部  
 - 若产品无库存，显示 `Pre-order` + ETA  
 - 提供 `Share` 按钮（复制链接、Pinterest、Instagram）
 
@@ -76,7 +78,8 @@
 - Meta Description：强调材质 + 场景 + 安装容易度  
 - Structured Data：`Product` + `AggregateRating`（有评价时）  
 - URL：`/products/oak-modern-earth-wall-lamp`
-- 图片 `alt`：包含材质、颜色、适用场景
+- 图片 `alt`：包含材质、颜色、适用场景  
+- 图片要求：全部 4:5 比例，WebP，大小 <400KB
 
 ---
 
@@ -89,15 +92,25 @@
 | `view_item_list` | 浏览 Related Products | list_name |
 | `select_promotion` | 点击 Inspiration 区 CTA | promo_name |
 | `download_installation` | 下载安装指南 | product_id |
+| `sticky_cta_click` | 移动端点击 Sticky CTA | product_id |
 
 ---
 
-## 6️⃣ QA 清单
+## 6️⃣ Future Enhancements
+
+- Compare / Size Guide 模块（对比尺寸、光源、安装方式）  
+- Energy Efficiency 评级图标  视觉化展示  
+- AR 预览 / Room Planner（Phase 3）
+
+---
+
+## 7️⃣ QA 清单
 
 - [ ] 变体切换图片正常  
 - [ ] 所有规格字段完整且正确  
 - [ ] 加入购物车与 mini cart 交互顺畅  
 - [ ] Gallery、视频在移动端无异常  
+- [ ] Sticky CTA 在移动端正常显示/隐藏  
 - [ ] Schema markup 验证无报错  
 - [ ] 所有 CTA 链接正确（Inspiration / Support）
 

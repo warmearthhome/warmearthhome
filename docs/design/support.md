@@ -13,6 +13,7 @@
    - CTA：`Contact us`（锚点到表单）
 
 2. **Quick Links (Cards)**
+   - Tracking My Order  
    - Shipping & Returns  
    - Installation Guides  
    - FAQ  
@@ -20,12 +21,13 @@
 
 3. **FAQ Accordion**
    - 分类：
-     - Orders & Delivery  
+     - Orders & Delivery（含订单追踪步骤）  
      - Returns & Exchanges  
      - Installation & Care  
      - Product Warranty  
      - Payments & Invoices
    - 每项提供简洁回答 + 跳转链接
+   - FAQ 末尾追加 CTA：`Still need help? Reach our team ›`
 
 4. **Shipping & Returns Summary**
    - Shipping：澳洲境内免邮门槛、处理时间、快递选项  
@@ -33,17 +35,19 @@
    - 重要提醒：灯具需原包装，退货运费说明
 
 5. **Installation Guides**
-   - 提供 PDF 下载列表（按系列/灯具类型）  
-   - 分 `Hardwired` 与 `Plug-in`  说明安装注意事项  
+   - 提供 PDF 下载列表（按系列/灯具类型），标注文件大小（如 “Modern Earth Pendant – PDF · 2.3 MB”）  
+   - 分 `Hardwired` 与 `Plug-in` 说明安装注意事项  
    - 提供安全提示 & 推荐持证电工
 
 6. **Contact / Styling Help**
    - 表单字段：姓名、邮箱、电话、订单号、问题类别、留言  
-   - 提供 `Book a styling call` 链接（Calendly 或邮件预约）
+   - 提供 `Book a styling call` 链接（Calendly 或邮件预约）  
+   - 提示：工作日 24 小时内回复，周末 48 小时内
 
-7. **Social & Community**
+7. **Social & Community & Footer CTA**
    - 提示关注 Instagram/Pinterest 获取布置灵感  
-   - 引导加入邮件列表获取安装技巧与新品通知
+   - 引导加入邮件列表获取安装技巧与新品通知  
+   - Footer 顶部设置强调区块：`Stay in our warm circle — Join the newsletter`
 
 ---
 
@@ -70,9 +74,10 @@
 | 事件 | 说明 | 参数 |
 |------|------|------|
 | `faq_open` | 展开某个 FAQ | category / question |
-| `download_guide` | 下载安装指南 | file_name |
+| `download_guide` | 下载安装指南 | file_name / file_size |
 | `contact_submit` | 提交表单 | issue_type |
 | `schedule_call` | 点击预约 Styling | source |
+| `order_track_click` | 点击订单追踪按钮 | order_status |
 
 ---
 
@@ -83,8 +88,8 @@
 - [ ] 表单验证（必填、邮箱格式）  
 - [ ] 成功/错误提示文案  
 - [ ] 事件埋点在 GA4 / Meta 中正确记录  
-- [ ] 页脚邮箱及社交链接正常
+- [ ] 页脚 CTA、邮箱及社交链接正常
 
 ---
 
-**结论**：Support 页面应快速传达 Warm Earth Home 的服务承诺，提供租房友好、安装简易的支持信息，并引导用户进行深层互动（预约 Styling、订阅邮件）。
+**结论**：Support 页面应快速传达 Warm Earth Home 的服务承诺，提供租房友好、安装简易的支持信息，并引导用户进行深层互动（预约 Styling、订阅邮件、订单追踪）。

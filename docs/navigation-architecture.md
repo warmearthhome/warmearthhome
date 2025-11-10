@@ -98,8 +98,8 @@ Use descriptive URLs (SEO-friendly slugs):
 | Phase | Components | Notes |
 |--------|-------------|--------|
 | **MVP (Launch)** | Home, Shop (Series + PLP + PDP), Inspiration (3 articles), About, Support, Footer | Core for product-focused marketing |
-| **Phase 2 (Growth)** | Testimonials, Lookbook, Installation Videos, “Small Space Hacks” Blog | Content for retention & community |
-| **Phase 3 (Automation)** | Email flows, Instagram Feed, UGC Gallery | Scalable engagement & SEO growth |
+| **Phase 2 (Growth)** | Testimonials, Lookbook, Installation Videos, “Small Space Hacks” Blog, Search Results Page | Content for retention & discovery |
+| **Phase 3 (Automation)** | Email flows, Instagram Feed, UGC Gallery, Mini Cart/Checkout optimisation | Scalable engagement & SEO growth |
 
 ---
 
@@ -128,29 +128,32 @@ Use descriptive URLs (SEO-friendly slugs):
 
 ### A. Content Marketing (SEO + Inspiration)
 
-- 每月 1 篇 “Lighting Ideas”  
+- Monthly Rhythm：
+  - Week 1：发布 Lighting Ideas 系列文章（SEO 关键词：rental lighting, cozy lighting）。
+  - Week 3：发布安装/空间实用 Tips，并在社交渠道二次分发。
 - 每季度 1 篇 “How to Choose” 教程  
 - 博客与产品双向内链（`Shop the Look`）
 
 ### B. Email Marketing (Post-launch)
 
-| Type | Trigger | Message Goal |
-|-------|----------|---------------|
-| Welcome | Signup | 品牌故事 + 首次购买优惠码 |
-| Abandoned Cart | 24h 未结账 | 轻提醒 + 优雅语言 |
-| Inspiration Digest | 每月 | 推荐博客 + 新产品 |
+| Flow | Trigger | 内容方向 |
+|------|---------|-----------|
+| Welcome Series | 新订阅 | 品牌故事、系列介绍、租房友好安装技巧（3 封） |
+| Cart Abandonment | 24h 未结账 | 温和提醒 + 热销推荐（无折扣） |
+| Seasonal Story | 月度/季度 | 新文章 + 新品灯具亮点 + 社区故事 |
 
 ### C. Social & Community
 
 - Instagram：日常搭配 + 客户实拍  
-- Pinterest：系列图板（Modern Earth / Urban Glow）  
-- YouTube（阶段2）：安装指南 / 小空间布灯技巧  
+- Pinterest：先投放低预算 **Pinterest Ads**，引导到 Inspiration & PLP 页面  
+- YouTube（阶段2）：安装指南 / 小空间布灯技巧
 
 ### D. Retargeting & Paid
 
 - Facebook / Instagram 广告：聚焦“租房氛围灯”主题  
-- Google Ads：关键词组合 “modern wall lamp Australia”  
-- 邮件引流至 PDP，不推折扣，只推风格。
+- Google Ads：关键词组合 "modern wall lamp Australia"  
+- Pinterest Ads：推广视觉灵感和可购买内容  
+- 邮件引流至 PDP，不推折扣，只推风格
 
 ---
 
@@ -166,10 +169,11 @@ Use descriptive URLs (SEO-friendly slugs):
 
 ## 8️⃣ Analytics & Tracking Setup
 
-- Google Analytics 4：事件追踪（View_product, Add_to_cart, Purchase）  
-- Meta Pixel：主要追踪 AddToCart / ViewContent  
+- Google Analytics 4：`view_item_list`、`view_item`、`add_to_cart`、`purchase`  
+- GA4 自定义事件：`scroll_depth`（首页、长文档 25/50/75/100%）、`email_signup`（Newsletter, Styling Call）  
+- Meta Pixel：AddToCart / ViewContent / Purchase  
 - Email Signups：表单转化率（目标 ≥ 3%）  
-- Scroll Tracking：评估用户阅读首页深度，优化 CTA 位置。
+- Scroll Tracking：评估用户阅读首页深度，优化 CTA 位置
 
 ---
 
@@ -177,7 +181,7 @@ Use descriptive URLs (SEO-friendly slugs):
 
 ✅ **导航结构**：清晰、浅层级、聚焦产品购买路径。  
 ✅ **品牌一致性**：紧扣 Modern Earth（自然）与 Urban Glow（都市极简）。  
-✅ **营销兼容性**：内置 SEO / Email / 社交触点设计。  
+✅ **营销兼容性**：月度内容节奏 + 邮件自动化 + Pinterest Ads 易于单人执行。  
 ✅ **可维护性**：单人运营可管理，后期扩展空间明确。  
 
 > 🌿 “Warm Earth Home brings light that feels alive — crafted for calm, modern living.”
