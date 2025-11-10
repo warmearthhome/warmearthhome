@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Earth Lighting | Warm Earth Home</title>
+    <meta name="description" content="Discover warm, natural lighting crafted for Australian homes. Modern Earth and Urban Glow collections.">
+    <link rel="stylesheet" href="../assets/css/warm-earth-home.css">
+</head>
+<body class="weh-shop-page">
+    
+    <!-- Breadcrumb -->
+    <nav class="weh-breadcrumb" aria-label="Breadcrumb">
+        <div class="weh-container">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop/">Shop</a></li>
+                <li><a href="/shop/modern-earth/">Modern Earth</a></li>
+                <li aria-current="page">Wall Lamps</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="weh-page-header">
+        <div class="weh-container">
+            <h1>Modern Earth Series</h1>
+            <p class="weh-page-description">Natural oak wall lamps for calm Australian homes</p>
+        </div>
+    </header>
+
+    <!-- Top Intro Paragraph -->
+    <section class="weh-section weh-section-sm">
+        <div class="weh-container">
+            <p class="weh-intro-paragraph">
+                Discover warm, natural lighting crafted for Australian homes. Our Modern Earth and Urban Glow collections bring calm, simple beauty to bedrooms, living rooms, and small spaces. Each piece is designed for easy installation and everyday comfort.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter & Sort Bar -->
+    <section class="weh-filter-section">
+        <div class="weh-container">
+            <div class="weh-filter-bar">
+                <button class="weh-filter-toggle" aria-label="Toggle filters">
+                    <span>Filters</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+                
+                <div class="weh-filter-drawer" id="weh-filter-drawer">
+                    <div class="weh-filter-group">
+                        <h3>Series</h3>
+                        <label><input type="checkbox" name="series" value="modern-earth" checked> Modern Earth</label>
+                        <label><input type="checkbox" name="series" value="urban-glow"> Urban Glow</label>
+                    </div>
+                    
+                    <div class="weh-filter-group">
+                        <h3>Category</h3>
+                        <label><input type="checkbox" name="category" value="pendant"> Pendant Lights</label>
+                        <label><input type="checkbox" name="category" value="wall"> Wall Lamps</label>
+                        <label><input type="checkbox" name="category" value="table"> Table Lamps</label>
+                        <label><input type="checkbox" name="category" value="floor"> Floor Lamps</label>
+                        <label><input type="checkbox" name="category" value="ceiling"> Ceiling Lamps</label>
+                    </div>
+                    
+                    <div class="weh-filter-group">
+                        <h3>Room</h3>
+                        <label><input type="checkbox" name="room" value="bedroom"> Bedroom</label>
+                        <label><input type="checkbox" name="room" value="living"> Living Room</label>
+                        <label><input type="checkbox" name="room" value="dining"> Dining</label>
+                        <label><input type="checkbox" name="room" value="entryway"> Entryway</label>
+                    </div>
+                    
+                    <div class="weh-filter-group">
+                        <h3>Price Range</h3>
+                        <input type="range" name="price" min="0" max="500" value="500" class="weh-price-slider">
+                        <span class="weh-price-display">$0 - $500</span>
+                    </div>
+                    
+                    <div class="weh-filter-group">
+                        <h3>Material</h3>
+                        <label><input type="checkbox" name="material" value="wood"> Wood</label>
+                        <label><input type="checkbox" name="material" value="linen"> Linen</label>
+                        <label><input type="checkbox" name="material" value="metal"> Metal</label>
+                        <label><input type="checkbox" name="material" value="glass"> Glass</label>
+                    </div>
+                    
+                    <div class="weh-filter-group">
+                        <h3>Installation</h3>
+                        <label><input type="checkbox" name="installation" value="hardwired"> Hardwired</label>
+                        <label><input type="checkbox" name="installation" value="plug-in"> Plug-in</label>
+                    </div>
+                    
+                    <button class="weh-btn weh-btn-secondary" onclick="clearAllFilters()">Clear All</button>
+                </div>
+                
+                <div class="weh-sort-bar">
+                    <label for="sort-select">Sort by:</label>
+                    <select id="sort-select" name="sort">
+                        <option value="recommended">Recommended</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="weh-section">
+        <div class="weh-container">
+            <div class="weh-product-grid" id="weh-product-grid">
+                <!-- Product cards will be dynamically loaded -->
+                <div class="weh-product-card">
+                    <img src="images/product-1.webp" alt="Oak Wall Lamp" class="weh-product-card-image" loading="lazy">
+                    <span class="weh-product-card-badge">New</span>
+                    <div class="weh-product-card-content">
+                        <h3 class="weh-product-card-title">Oak Wall Lamp</h3>
+                        <p class="weh-product-card-price">$149 AUD</p>
+                        <div class="weh-product-card-actions">
+                            <button class="weh-btn weh-btn-ghost weh-quick-view-btn" data-product-id="1">Quick View</button>
+                            <button class="weh-btn weh-btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- More products... -->
+            </div>
+            
+            <!-- Empty State (hidden by default) -->
+            <div class="weh-empty-state" id="weh-empty-state" style="display: none;">
+                <p class="weh-empty-state-message">
+                    We don't have a perfect glow yet — try removing a filter or browse Urban Glow favourites.
+                </p>
+                <div class="weh-empty-state-products">
+                    <!-- Recommended products -->
+                </div>
+            </div>
+            
+            <!-- Pagination / Load More -->
+            <div class="weh-pagination">
+                <button class="weh-btn weh-btn-secondary" id="weh-load-more">Load More</button>
+                <nav class="weh-pagination-nav" aria-label="Pagination">
+                    <a href="/shop/modern-earth/wall-lamps/page/2/">Next →</a>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lifestyle Row (Optional) -->
+    <section class="weh-section weh-section-sm">
+        <div class="weh-container">
+            <div class="weh-lifestyle-row">
+                <img src="images/lifestyle-living-room.webp" alt="Seen in modern living rooms" class="weh-lifestyle-image" loading="lazy">
+                <div class="weh-lifestyle-content">
+                    <h3>Seen in modern living rooms</h3>
+                    <a href="/shop/space/living-room/" class="weh-btn weh-btn-primary">Shop the Space</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="weh-section">
+        <div class="weh-container">
+            <div class="weh-footer-cta">
+                <p>Need help choosing? <a href="/support/contact/" class="weh-btn weh-btn-ghost">Book a lighting call</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div class="weh-modal" id="weh-quick-view-modal" role="dialog" aria-labelledby="weh-quick-view-title" aria-hidden="true">
+        <div class="weh-modal-content">
+            <button class="weh-modal-close" aria-label="Close modal">×</button>
+            <div class="weh-quick-view-content">
+                <!-- Quick view content will be loaded via AJAX -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/warm-earth-home.js"></script>
+</body>
+</html>
+
