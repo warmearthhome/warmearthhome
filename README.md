@@ -30,7 +30,7 @@ Warm Earth Home 是一个温馨的 WordPress 电商网站项目，专注于提�
 
 1. **克隆仓库**
    ```bash
-   git clone https://github.com/lijie520240/warmearthhome.git
+   git clone https://github.com/warmearthhome/warmearthhome.git
    cd warmearthhome
    ```
 
@@ -55,6 +55,7 @@ warmearthhome/
 ├── .github/              # GitHub 协作模板
 │   ├── ISSUE_TEMPLATE/  # Issue 模板
 │   └── pull_request_template.md
+├── docs/                # 协作手册、变更记录等
 ├── 网站图片/            # 图片资源
 ├── *.php               # WordPress 插件/主题文件
 ├── *.css               # 样式文件
@@ -65,15 +66,18 @@ warmearthhome/
 
 ## 协作流程
 
-本项目使用 Git Flow 工作流：
+- 仓库由 GitHub 组织 **warmearthhome** 托管，核心团队为 `@warmearthhome/core`
+- 所有改动需通过 Pull Request 合并至 `main`
+- 新建 Issue 会自动添加到 [网站建设 Roadmap 看板](https://github.com/orgs/warmearthhome/projects/1)
+- 关闭 Issue / PR 将自动移动到 Done 列，保持任务状态同步
+- 详细协作指南请参考 [docs/collaboration-playbook.md](docs/collaboration-playbook.md) 与 [CONTRIBUTING.md](CONTRIBUTING.md)
 
-1. **创建分支**: 从 `main` 创建功能分支
-2. **开发**: 在分支上开发新功能或修复bug
-3. **提交**: 使用清晰的提交信息
-4. **PR**: 创建 Pull Request 并填写模板
-5. **合并**: 审查通过后合并到 `main`
-
-详细协作指南请参考 [CONTRIBUTING.md](CONTRIBUTING.md)
+Git Flow 工作流核心步骤：
+1. **创建分支**: 从 `main` 创建 `feature/` 或 `fix/` 分支
+2. **开发**: 在分支上实现需求或修复问题
+3. **提交**: 使用语义化提交信息（例：`feat:`、`fix:`）
+4. **PR**: 创建 Pull Request，填写模板并关联 Issue（`Closes #编号`）
+5. **合并**: 自检通过后合并至 `main`，必要时更新发布说明
 
 ## 主要功能
 
@@ -88,12 +92,14 @@ warmearthhome/
 
 - [安装指南](wordpress-setup-guide.md)
 - [协作指南](CONTRIBUTING.md)
+- [团队协作手册](docs/collaboration-playbook.md)
+- [变更记录](CHANGELOG.md)
 - [CSS验证指南](CSS验证指南.md)
 - [SEO优化清单](SEO优化检查清单.md)
 
 ## 贡献
 
-欢迎贡献代码！请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解协作流程。
+欢迎贡献代码！请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [docs/collaboration-playbook.md](docs/collaboration-playbook.md) 了解协作流程。
 
 ## 许可证
 
@@ -101,7 +107,8 @@ warmearthhome/
 
 ## 联系方式
 
-- **GitHub**: [@lijie520240](https://github.com/lijie520240)
+- **GitHub 组织**: [@warmearthhome](https://github.com/warmearthhome)
+- **核心团队看板**: [网站建设 Roadmap](https://github.com/orgs/warmearthhome/projects/1)
 - **网站**: https://warmearthhome.com
 
 ---
