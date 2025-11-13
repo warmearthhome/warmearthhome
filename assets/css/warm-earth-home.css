@@ -200,6 +200,15 @@ p {
   transform: scale(1.03);
 }
 
+.weh-product-placeholder {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px dashed rgba(62, 74, 82, 0.25);
+  border-radius: var(--weh-radius-md);
+  padding: var(--weh-spacing-xl);
+  text-align: center;
+  color: var(--weh-urban-slate);
+}
+
 .weh-product-card-content {
   padding: var(--weh-spacing-md);
 }
@@ -456,5 +465,46 @@ p {
 *:focus-visible {
   outline: 2px solid var(--weh-deep-clay);
   outline-offset: 2px;
+}
+
+/* --------------------------------------------
+   Fallback & Placeholder Helpers
+   -------------------------------------------- */
+.weh-space-card-placeholder,
+.weh-inspiration-card-placeholder,
+.weh-philosophy-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--weh-spacing-xl);
+  background: linear-gradient(135deg, rgba(246, 233, 221, 0.45), rgba(255, 255, 248, 0.8));
+  border: 1px dashed rgba(62, 74, 82, 0.2);
+  border-radius: var(--weh-radius-lg);
+  min-height: 220px;
+  text-align: center;
+  color: var(--weh-urban-slate);
+}
+
+.weh-inspiration-card-placeholder {
+  min-height: 200px;
+}
+
+.weh-newsletter-fallback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--weh-spacing-sm);
+  margin-top: var(--weh-spacing-md);
+}
+
+.weh-newsletter-fallback input[type="email"] {
+  flex: 1 1 260px;
+  padding: var(--weh-spacing-sm);
+  border: 1px solid rgba(62, 74, 82, 0.2);
+  border-radius: var(--weh-radius-md);
+  font-size: 16px;
+}
+
+.weh-newsletter-fallback button {
+  flex: 0 0 auto;
 }
 
