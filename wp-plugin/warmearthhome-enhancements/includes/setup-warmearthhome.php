@@ -1,194 +1,91 @@
 <?php
 /**
- * Warm Earth Home - 网站结构初始化脚本
- * 
- * 使用方法：
- * 1. 可以通过 WordPress 后台的 "代码片段" 插件运行
- * 2. 或者添加到主题的 functions.php（临时使用后删除）
- * 3. 或者通过 WP-CLI 运行
- * 
- * 注意：运行后请删除或禁用此脚本
+ * Initialization helpers to create taxonomy/pages/menu/homepage.
  */
 
-// 防止直接访问
 if (!defined('ABSPATH')) {
-    exit;
+	exit;
 }
 
-/**
- * 创建产品分类
- */
-function weh_create_product_categories() {
-    // 检查分类是否已存在
-    if (term_exists('lighting', 'product_cat')) {
-        return; // 如果已存在，跳过
-    }
-    
-    // 创建主分类 Lighting
-    $lighting_id = wp_insert_term(
-        'Lighting',
-        'product_cat',
-        array(
-            'slug' => 'lighting',
-            'description' => 'All lighting products'
-        )
-    );
-    
-    if (!is_wp_error($lighting_id)) {
-        $parent_id = $lighting_id['term_id'];
-        
-        // 创建子分类
-        $subcategories = array(
-            array(
-                'name' => 'Wall Lights',
-                'slug' => 'wall-lights',
-                'description' => 'Wall mounted lighting fixtures'
-            ),
-            array(
-                'name' => 'Pendant Lights',
-                'slug' => 'pendant-lights',
-                'description' => 'Pendant and hanging lights'
-            ),
-            array(
-                'name' => 'Table Lamps',
-                'slug' => 'table-lamps',
-                'description' => 'Table and desk lamps'
-            ),
-            array(
-                'name' => 'Floor Lamps',
-                'slug' => 'floor-lamps',
-                'description' => 'Floor standing lamps'
-            )
-        );
-        
-        foreach ($subcategories as $subcat) {
-            wp_insert_term(
-                $subcat['name'],
-                'product_cat',
-                array(
-                    'slug' => $subcat['slug'],
-                    'parent' => $parent_id,
-                    'description' => $subcat['description']
-                )
-            );
-        }
-    }
+function wehp_create_product_categories() {
+	if (term_exists('lighting', 'product_cat')) {
+		return;
+	}
+	$lighting_id = wp_insert_term('Lighting', 'product_cat', array(
+		'slug' => 'lighting',
+		'description' => 'All lighting products'
+	));
+	if (!is_wp_error($lighting_id)) {
+		$parent_id = $lighting_id['term_id'];
+		$subcategories = array(
+			array('name' => 'Wall Lights', 'slug' => 'wall-lights', 'description' => 'Wall mounted lighting fixtures'),
+			array('name' => 'Pendant Lights', 'slug' => 'pendant-lights', 'description' => 'Pendant and hanging lights'),
+			array('name' => 'Table Lamps', 'slug' => 'table-lamps', 'description' => 'Table and desk lamps'),
+			array('name' => 'Floor Lamps', 'slug' => 'floor-lamps', 'description' => 'Floor standing lamps'),
+		);
+		foreach ($subcategories as $subcat) {
+			wp_insert_term($subcat['name'], 'product_cat', array(
+				'slug' => $subcat['slug'],
+				'parent' => $parent_id,
+				'description' => $subcat['description']
+			));
+		}
+	}
 }
 
-/**
- * 创建产品标签（房间分类）
- */
-function weh_create_room_tags() {
-    $room_tags = array(
-        'Bedroom',
-        'Living Room',
-        'Dining / Kitchen',
-        'Entryway'
-    );
-    
-    foreach ($room_tags as $tag) {
-        if (!term_exists($tag, 'product_tag')) {
-            wp_insert_term(
-                $tag,
-                'product_tag',
-                array(
-                    'slug' => sanitize_title($tag)
-                )
-            );
-        }
-    }
+function wehp_create_room_tags() {
+	$room_tags = array('Bedroom','Living Room','Dining / Kitchen','Entryway');
+	foreach ($room_tags as $tag) {
+		if (!term_exists($tag, 'product_tag')) {
+			wp_insert_term($tag, 'product_tag', array('slug' => sanitize_title($tag)));
+		}
+	}
 }
 
-/**
- * 创建产品系列标签
- */
-function weh_create_collection_tags() {
-    $collections = array(
-        'Scandinavian Wood & Linen',
-        'Warm Brass & Opal Glass'
-    );
-    
-    foreach ($collections as $collection) {
-        if (!term_exists($collection, 'product_tag')) {
-            wp_insert_term(
-                $collection,
-                'product_tag',
-                array(
-                    'slug' => sanitize_title($collection)
-                )
-            );
-        }
-    }
+function wehp_create_collection_tags() {
+	$collections = array('Scandinavian Wood & Linen','Warm Brass & Opal Glass');
+	foreach ($collections as $collection) {
+		if (!term_exists($collection, 'product_tag')) {
+			wp_insert_term($collection, 'product_tag', array('slug' => sanitize_title($collection)));
+		}
+	}
 }
 
-/**
- * 创建 Support 页面
- */
-function weh_create_support_pages() {
-    $pages = array(
-        array(
-            'title' => 'About Us',
-            'slug' => 'about-us',
-            'content' => 'Brand story and values will be added here.'
-        ),
-        array(
-            'title' => 'Shipping & Returns',
-            'slug' => 'shipping-returns',
-            'content' => 'Shipping and returns policy will be added here.'
-        ),
-        array(
-            'title' => 'Contact',
-            'slug' => 'contact',
-            'content' => 'Contact form and information will be added here.'
-        )
-    );
-    
-    foreach ($pages as $page) {
-        // 检查页面是否已存在
-        $existing_page = get_page_by_path($page['slug']);
-        
-        if (!$existing_page) {
-            wp_insert_post(array(
-                'post_title' => $page['title'],
-                'post_name' => $page['slug'],
-                'post_content' => $page['content'],
-                'post_status' => 'publish',
-                'post_type' => 'page'
-            ));
-        }
-    }
+function wehp_create_support_pages() {
+	$pages = array(
+		array('title' => 'About Us', 'slug' => 'about-us', 'content' => 'Brand story and values will be added here.'),
+		array('title' => 'Shipping & Returns', 'slug' => 'shipping-returns', 'content' => 'Shipping and returns policy will be added here.'),
+		array('title' => 'Contact', 'slug' => 'contact', 'content' => 'Contact form and information will be added here.'),
+	);
+	foreach ($pages as $page) {
+		$existing_page = get_page_by_path($page['slug']);
+		if (!$existing_page) {
+			wp_insert_post(array(
+				'post_title' => $page['title'],
+				'post_name' => $page['slug'],
+				'post_content' => $page['content'],
+				'post_status' => 'publish',
+				'post_type' => 'page'
+			));
+		}
+	}
 }
 
-/**
- * 设置导航菜单
- */
-function weh_setup_navigation_menu() {
-	// 菜单名称
+function wehp_setup_navigation_menu() {
 	$menu_name = 'Main Navigation';
 	$menu_obj  = wp_get_nav_menu_object($menu_name);
 	$menu_id   = $menu_obj ? (int) $menu_obj->term_id : 0;
-
-	// 若不存在则创建
 	if (!$menu_id) {
 		$menu_id = wp_create_nav_menu($menu_name);
-		if (is_wp_error($menu_id)) {
-			return;
-		}
+		if (is_wp_error($menu_id)) return;
 	}
-
-	// 工具：获取已存在的菜单项 title 用于避免重复
 	$existing_items = wp_get_nav_menu_items($menu_id);
 	$existing_titles = array();
 	if ($existing_items && !is_wp_error($existing_items)) {
-		foreach ($existing_items as $item) {
-			$existing_titles[] = $item->title;
-		}
+		foreach ($existing_items as $item) { $existing_titles[] = $item->title; }
 	}
-	$has_item = function($title) use ($existing_titles) {
-		return in_array($title, $existing_titles, true);
-	};
+	$has_item = function($title) use ($existing_titles) { return in_array($title, $existing_titles, true); };
 
-	// 目标链接与对象
 	$shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : 0;
 	$shop_url     = $shop_page_id ? get_permalink($shop_page_id) : home_url('/shop/');
 
@@ -213,7 +110,6 @@ function weh_setup_navigation_menu() {
 	$shipping_page = get_page_by_path('shipping-returns');
 	$contact_page  = get_page_by_path('contact');
 
-	// 顶级：Shop
 	$shop_item_id = 0;
 	if (!$has_item('Shop')) {
 		$shop_item_id = wp_update_nav_menu_item($menu_id, 0, array(
@@ -222,8 +118,6 @@ function weh_setup_navigation_menu() {
 			'menu-item-status' => 'publish',
 		));
 	}
-
-	// 子项：Lighting categories
 	$parent_for_categories = is_wp_error($shop_item_id) || !$shop_item_id ? 0 : (int) $shop_item_id;
 	$maybe_add_term_item = function($title, $term) use ($menu_id, $parent_for_categories, $has_item) {
 		if ($term && !is_wp_error($term) && !$has_item($title)) {
@@ -242,7 +136,6 @@ function weh_setup_navigation_menu() {
 	$maybe_add_term_item('Table Lamps', $table_term);
 	$maybe_add_term_item('Floor Lamps', $floor_term);
 
-	// 顶级：Shop by Space
 	$space_item_id = 0;
 	if (!$has_item('Shop by Space')) {
 		$space_item_id = wp_update_nav_menu_item($menu_id, 0, array(
@@ -254,8 +147,7 @@ function weh_setup_navigation_menu() {
 	$parent_for_space = is_wp_error($space_item_id) || !$space_item_id ? 0 : (int) $space_item_id;
 	foreach ($room_terms as $term) {
 		if ($term && !is_wp_error($term)) {
-			$title = ucwords(str_replace('-', ' ', $term->slug));
-			if (!$has_item($title)) {
+			if (!$has_item($term->name)) {
 				wp_update_nav_menu_item($menu_id, 0, array(
 					'menu-item-title'    => $term->name,
 					'menu-item-object'   => 'product_tag',
@@ -268,7 +160,6 @@ function weh_setup_navigation_menu() {
 		}
 	}
 
-	// 顶级：Collections
 	$collections_item_id = 0;
 	if (!$has_item('Collections')) {
 		$collections_item_id = wp_update_nav_menu_item($menu_id, 0, array(
@@ -293,7 +184,6 @@ function weh_setup_navigation_menu() {
 		}
 	}
 
-	// 顶级：Support
 	$support_item_id = 0;
 	if (!$has_item('Support')) {
 		$support_item_id = wp_update_nav_menu_item($menu_id, 0, array(
@@ -319,34 +209,25 @@ function weh_setup_navigation_menu() {
 	$maybe_add_page_item('Shipping & Returns', $shipping_page);
 	$maybe_add_page_item('Contact', $contact_page);
 
-	// 绑定菜单到主题位置：优先 primary，否则取首个位置
-	$locations = get_registered_nav_menus(); // slug => desc
-	$theme_locs = get_nav_menu_locations();  // slug => menu_id
-
+	$locations = get_registered_nav_menus();
+	$theme_locs = get_nav_menu_locations();
 	if (!empty($locations)) {
 		if (isset($locations['primary'])) {
 			$theme_locs['primary'] = (int) $menu_id;
 		} else {
 			$first_slug = array_key_first($locations);
-			if ($first_slug) {
-				$theme_locs[$first_slug] = (int) $menu_id;
-			}
+			if ($first_slug) { $theme_locs[$first_slug] = (int) $menu_id; }
 		}
 		set_theme_mod('nav_menu_locations', $theme_locs);
 	}
 }
 
-/**
- * 创建并设置首页为静态页面，应用首页模板
- */
-function weh_setup_homepage() {
-	// 若已设置静态首页则跳过
+function wehp_setup_homepage() {
 	$show_on_front = get_option('show_on_front');
 	$front_id      = (int) get_option('page_on_front');
 	if ($show_on_front === 'page' && $front_id > 0) {
 		return;
 	}
-
 	$home_page = get_page_by_path('home');
 	if (!$home_page) {
 		$page_id = wp_insert_post(array(
@@ -356,49 +237,30 @@ function weh_setup_homepage() {
 			'post_type'    => 'page',
 			'post_content' => '',
 		));
-		if (is_wp_error($page_id)) {
-			return;
-		}
+		if (is_wp_error($page_id)) { return; }
 		$home_page = get_post($page_id);
 	}
-
-	// 绑定模板（支持子目录模板）
 	update_post_meta($home_page->ID, '_wp_page_template', 'templates/wordpress/page-homepage.php');
-
-	// 设置为静态首页
 	update_option('show_on_front', 'page');
 	update_option('page_on_front', (int) $home_page->ID);
 }
 
-/**
- * 初始化函数 - 运行所有设置
- */
-function weh_initialize_site_structure() {
-    // 只在管理员访问时运行
-    if (!current_user_can('manage_options')) {
-        return;
-    }
-    
-    weh_create_product_categories();
-    weh_create_room_tags();
-    weh_create_collection_tags();
-    weh_create_support_pages();
-    weh_setup_navigation_menu();
-	weh_setup_homepage();
+function wehp_initialize_site_structure() {
+	if (!current_user_can('manage_options')) {
+		return;
+	}
+	wehp_create_product_categories();
+	wehp_create_room_tags();
+	wehp_create_collection_tags();
+	wehp_create_support_pages();
+	wehp_setup_navigation_menu();
+	wehp_setup_homepage();
 }
 
-// 如果通过 URL 参数触发（用于测试）
+// URL trigger: /wp-admin/?weh_setup=1
 if (isset($_GET['weh_setup']) && current_user_can('manage_options')) {
-    weh_initialize_site_structure();
-    echo '<div class="notice notice-success"><p>网站结构初始化完成！</p></div>';
+	wehp_initialize_site_structure();
+	echo '<div class="notice notice-success"><p>网站结构初始化完成！</p></div>';
 }
-
-// 取消注释下面的行来在插件激活时自动运行
-// add_action('admin_init', 'weh_initialize_site_structure');
-
-
-
-
-
 
 

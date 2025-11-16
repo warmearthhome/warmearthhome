@@ -18,11 +18,20 @@ if (!defined('ABSPATH')) {
  * Enqueue Custom Styles
  */
 function weh_enqueue_styles() {
+    // Use get_stylesheet_directory_uri() for child theme support
+    $css_path = get_stylesheet_directory_uri() . '/assets/css/warm-earth-home.css';
+    $css_file = get_stylesheet_directory() . '/assets/css/warm-earth-home.css';
+    
+    // Fallback to template directory if not in child theme
+    if (!file_exists($css_file)) {
+        $css_path = get_template_directory_uri() . '/assets/css/warm-earth-home.css';
+    }
+    
     wp_enqueue_style(
         'warm-earth-home-css',
-        get_template_directory_uri() . '/assets/css/warm-earth-home.css',
+        $css_path,
         array(),
-        '1.0.0'
+        filemtime($css_file) ?: '1.0.1'
     );
 }
 add_action('wp_enqueue_scripts', 'weh_enqueue_styles');
@@ -31,11 +40,20 @@ add_action('wp_enqueue_scripts', 'weh_enqueue_styles');
  * Enqueue Custom Scripts
  */
 function weh_enqueue_scripts() {
+    // Use get_stylesheet_directory_uri() for child theme support
+    $js_path = get_stylesheet_directory_uri() . '/assets/js/warm-earth-home.js';
+    $js_file = get_stylesheet_directory() . '/assets/js/warm-earth-home.js';
+    
+    // Fallback to template directory if not in child theme
+    if (!file_exists($js_file)) {
+        $js_path = get_template_directory_uri() . '/assets/js/warm-earth-home.js';
+    }
+    
     wp_enqueue_script(
         'warm-earth-home-js',
-        get_template_directory_uri() . '/assets/js/warm-earth-home.js',
+        $js_path,
         array('jquery'),
-        '1.0.0',
+        filemtime($js_file) ?: '1.0.1',
         true
     );
 }
@@ -260,4 +278,155 @@ function weh_custom_excerpt_more($more) {
     return '...';
 }
 add_filter('excerpt_more', 'weh_custom_excerpt_more');
+
+/**
+ * Handle Support Contact Form Submission
+ */
+function weh_handle_contact_submit() {
+    if (!isset($_POST['weh_contact_nonce']) || !wp_verify_nonce($_POST['weh_contact_nonce'], 'weh_contact_form')) {
+        wp_safe_redirect(add_query_arg('weh_contact', 'error', wp_get_referer() ?: home_url('/')));
+        exit;
+    }
+
+    $name    = isset($_POST['contact_name']) ? sanitize_text_field(wp_unslash($_POST['contact_name'])) : '';
+    $email   = isset($_POST['contact_email']) ? sanitize_email(wp_unslash($_POST['contact_email'])) : '';
+    $phone   = isset($_POST['contact_phone']) ? sanitize_text_field(wp_unslash($_POST['contact_phone'])) : '';
+    $order   = isset($_POST['contact_order']) ? sanitize_text_field(wp_unslash($_POST['contact_order'])) : '';
+    $issue   = isset($_POST['contact_issue']) ? sanitize_text_field(wp_unslash($_POST['contact_issue'])) : '';
+    $message = isset($_POST['contact_message']) ? wp_kses_post(wp_unslash($_POST['contact_message'])) : '';
+
+    if (empty($name) || empty($email) || empty($message)) {
+        wp_safe_redirect(add_query_arg('weh_contact', 'invalid', wp_get_referer() ?: home_url('/')));
+        exit;
+    }
+
+    $admin_email = get_option('admin_email');
+    $subject = sprintf('[Support] %s — %s', $name, $issue ?: 'General');
+
+    $body  = "Name: {$name}\n";
+    $body .= "Email: {$email}\n";
+    if (!empty($phone)) {
+        $body .= "Phone: {$phone}\n";
+    }
+    if (!empty($order)) {
+        $body .= "Order: {$order}\n";
+    }
+    if (!empty($issue)) {
+        $body .= "Issue: {$issue}\n";
+    }
+    $body .= "Message:\n{$message}\n";
+
+    $headers = array('Content-Type: text/plain; charset=UTF-8', "Reply-To: {$name} <{$email}>");
+    wp_mail($admin_email, $subject, $body, $headers);
+
+    wp_safe_redirect(add_query_arg('weh_contact', 'success', wp_get_referer() ?: home_url('/')));
+    exit;
+}
+add_action('admin_post_nopriv_weh_contact_submit', 'weh_handle_contact_submit');
+add_action('admin_post_weh_contact_submit', 'weh_handle_contact_submit');
+
+/**
+ * Trust Bar Shortcode: [weh_trust_bar]
+ */
+function weh_trust_bar_shortcode($atts = array()) {
+    $defaults = array(
+        'free_shipping' => 'Free Shipping Over $150',
+        'returns'       => '30-Day Returns',
+        'rcm'           => 'RCM Certified',
+        'au_plug'       => 'AU Plug Ready',
+    );
+    $args = shortcode_atts($defaults, $atts, 'weh_trust_bar');
+
+    ob_start();
+    ?>
+    <nav class="weh-trust-bar" aria-label="Service guarantees">
+        <span aria-label="Free shipping over $150"><?php echo esc_html($args['free_shipping']); ?></span>
+        <span aria-label="30 day returns"><?php echo esc_html($args['returns']); ?></span>
+        <span aria-label="RCM certified"><?php echo esc_html($args['rcm']); ?></span>
+        <span aria-label="AU plug ready"><?php echo esc_html($args['au_plug']); ?></span>
+    </nav>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('weh_trust_bar', 'weh_trust_bar_shortcode');
+
+/**
+ * Newsletter Shortcode: [newsletter_form]
+ * Attributes: placeholder, button
+ */
+function weh_newsletter_form_shortcode($atts = array()) {
+    $defaults = array(
+        'placeholder' => 'Enter your email',
+        'button'      => 'Join',
+    );
+    $args = shortcode_atts($defaults, $atts, 'newsletter_form');
+
+    ob_start();
+    ?>
+    <form class="weh-newsletter-form" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+        <input type="hidden" name="action" value="weh_newsletter_signup">
+        <?php wp_nonce_field('weh_newsletter_form', 'weh_newsletter_nonce'); ?>
+        <label class="screen-reader-text" for="weh-newsletter-email">Email</label>
+        <input type="email" id="weh-newsletter-email" name="newsletter_email" placeholder="<?php echo esc_attr($args['placeholder']); ?>" required>
+        <button type="submit" class="weh-btn weh-btn-primary"><?php echo esc_html($args['button']); ?></button>
+        <p class="weh-form-note">We send only helpful lighting tips and new product updates.</p>
+    </form>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('newsletter_form', 'weh_newsletter_form_shortcode');
+
+/**
+ * Handle Newsletter Signup
+ */
+function weh_handle_newsletter_signup() {
+    if (!isset($_POST['weh_newsletter_nonce']) || !wp_verify_nonce($_POST['weh_newsletter_nonce'], 'weh_newsletter_form')) {
+        wp_safe_redirect(add_query_arg('weh_newsletter', 'error', wp_get_referer() ?: home_url('/')));
+        exit;
+    }
+    $email = isset($_POST['newsletter_email']) ? sanitize_email(wp_unslash($_POST['newsletter_email'])) : '';
+    if (empty($email) || !is_email($email)) {
+        wp_safe_redirect(add_query_arg('weh_newsletter', 'invalid', wp_get_referer() ?: home_url('/')));
+        exit;
+    }
+
+    // For MVP: email admin. Later integrate with ESP (e.g., Mailchimp)
+    $admin_email = get_option('admin_email');
+    $subject = '[Newsletter] New signup';
+    $body = "Email: {$email}\nSource: Support page newsletter form";
+    $headers = array('Content-Type: text/plain; charset=UTF-8');
+    wp_mail($admin_email, $subject, $body, $headers);
+
+    wp_safe_redirect(add_query_arg('weh_newsletter', 'success', wp_get_referer() ?: home_url('/')));
+    exit;
+}
+add_action('admin_post_nopriv_weh_newsletter_signup', 'weh_handle_newsletter_signup');
+add_action('admin_post_weh_newsletter_signup', 'weh_handle_newsletter_signup');
+
+/**
+ * Render Trust Bar Site-wide (Blocksy header after, fallback to body open)
+ * Toggle via filter: add_filter('warmearthhome_show_trust_bar', '__return_false');
+ */
+function weh_render_global_trust_bar() {
+	if (is_admin()) {
+		return;
+	}
+	// Allow theme/plugins to disable
+	$show = apply_filters('warmearthhome_show_trust_bar', true);
+	if (!$show) {
+		return;
+	}
+	// Avoid duplicate render if both hooks fire
+	static $rendered = false;
+	if ($rendered) {
+		return;
+	}
+	$rendered = true;
+
+	echo do_shortcode('[weh_trust_bar]');
+}
+// Prefer Blocksy header hook if available
+add_action('blocksy:header:after', 'weh_render_global_trust_bar', 20);
+// Fallback for themes without Blocksy hook
+add_action('wp_body_open', 'weh_render_global_trust_bar', 20);
 

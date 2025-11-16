@@ -1,0 +1,9 @@
+﻿## Objective
+瀹屾垚 WooCommerce 鍒嗙被浣撶郴寤虹珛涓庡鑸彍鍗曠粦瀹?
+## Tasks
+- [ ] 鍦ㄥ悗鍙板垱寤?4 涓?Lighting 瀛愬垎绫?- [ ] 鍒涘缓 5 涓?Shop by Room 鑷畾涔?taxonomy
+- [ ] 鍒涘缓 2 涓?Collections 鑷畾涔?taxonomy
+- [ ] 灏嗗垎绫婚摼鎺ョ粦瀹氬埌 Blocksy 涓诲鑸?
+## Acceptance Criteria
+- 鐐瑰嚮瀵艰埅鑿滃崟鑳借繘鍏ュ悇浜у搧鍒嗙被椤?- 杩囨护鑿滃崟姝ｇ‘鏄剧ず浜у搧鏁伴噺
+
