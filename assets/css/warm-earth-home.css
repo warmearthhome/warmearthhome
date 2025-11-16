@@ -11,16 +11,30 @@
    ============================================ */
 
 :root {
-  /* Primary Colors */
-  --weh-warm-sand: #F6E9DD;
-  --weh-soft-ivory: #FFFFF8;
-  --weh-deep-clay: #A46758;
-  --weh-urban-slate: #3E4A52;
-  --weh-accent-glow: #F3B46E;
+  /* Primary Colors - Warm Bronze (main brand color) */
+  --weh-warm-bronze: #D4A574;          /* Main CTA, buttons, prices */
+  --weh-warm-bronze-hover: #C49564;    /* 10% darker for hover states */
+  --weh-deep-clay: #A46758;            /* Secondary actions, borders */
+  --weh-urban-slate: #3E4A52;          /* Primary text, headings */
+  
+  /* Neutral Colors */
+  --weh-warm-sand: #F6E9DD;            /* Background, cards */
+  --weh-soft-ivory: #FFFFF8;           /* Card backgrounds, highlights */
+  --weh-light-gray: #F5F5F5;           /* Subtle backgrounds, dividers */
   
   /* Accent Colors */
-  --weh-green-tint: #C6D8C4;
-  --weh-amber: #E9C46A;
+  --weh-accent-glow: #F3B46E;          /* Highlights, badges */
+  --weh-amber: #E9C46A;                /* Subtle accents */
+  
+  /* Text Colors */
+  --weh-text-primary: #1a1a1a;         /* Primary text (16.5:1 contrast on white) */
+  --weh-text-secondary: #666666;       /* Secondary text (7.1:1 contrast on white) */
+  --weh-text-muted: #999999;           /* Captions, meta info */
+  
+  /* Status Colors */
+  --weh-success: #4A9B7F;              /* Success messages */
+  --weh-error: #C95A4A;                /* Error messages */
+  --weh-info: #3E4A52;                 /* Informational messages */
   
   /* Typography */
   --weh-font-heading: 'Playfair Display', 'Georgia', serif;
@@ -33,14 +47,24 @@
   --weh-spacing-lg: 32px;
   --weh-spacing-xl: 40px;
   --weh-spacing-xxl: 48px;
+  --weh-spacing-xxxl: 64px;
   
   /* Border Radius */
-  --weh-radius-sm: 4px;
-  --weh-radius-md: 8px;
-  --weh-radius-lg: 12px;
+  --weh-radius-sm: 4px;                /* Small elements, tags */
+  --weh-radius-md: 8px;                /* Buttons, cards, inputs (standard) */
+  --weh-radius-lg: 12px;               /* Large cards, hero sections */
+  --weh-radius-xl: 16px;               /* Special elements */
+  
+  /* Shadows */
+  --weh-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);      /* Subtle elevation */
+  --weh-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);      /* Cards, buttons */
+  --weh-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);     /* Hover states, elevated cards */
+  --weh-shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.15);    /* Modals, popups */
   
   /* Transitions */
-  --weh-transition: all 0.3s ease;
+  --weh-transition: all 0.3s ease;     /* Standard */
+  --weh-transition-fast: all 0.2s ease; /* Fast (hover states) */
+  --weh-transition-slow: all 0.5s ease; /* Slow (major animations) */
 }
 
 /* ============================================
@@ -54,15 +78,15 @@ body {
   font-family: var(--weh-font-body);
   font-size: 18px;
   line-height: 1.6;
-  color: var(--weh-urban-slate);
-  background-color: var(--weh-warm-sand);
+  color: var(--weh-text-primary);
+  background-color: #FFFFFF; /* Clean white background */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--weh-font-heading);
   font-weight: 600;
   line-height: 1.2;
-  color: var(--weh-urban-slate);
+  color: var(--weh-text-primary);
   margin-bottom: var(--weh-spacing-md);
 }
 
@@ -81,57 +105,154 @@ h3 {
   line-height: 1.4;
 }
 
+h4 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  body {
+    font-size: 16px;
+  }
+}
+
 p {
   max-width: 80ch; /* Limit paragraph width for readability */
   margin-bottom: var(--weh-spacing-md);
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Fix text stacking/overlapping issues */
+h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.2 !important;
+  letter-spacing: -0.01em; /* Slight letter spacing to prevent overlap */
+}
+
+h2 {
+  line-height: 1.3 !important;
+}
+
+h3 {
+  line-height: 1.4 !important;
+}
+
+/* Fix text in buttons */
+button,
+.wp-element-button,
+.weh-btn {
+  line-height: 1.5 !important;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fix CSS test area text stacking */
+.weh-css-test-area h2,
+.weh-css-test-area h3 {
+  line-height: 1.4 !important;
+  word-break: break-word;
+  white-space: normal;
+  overflow: visible;
+}
+
+/* Hide or fix test area if needed */
+.weh-css-test-area {
+  display: none; /* Hide test area on production */
+}
+
+/* Only show in development */
+body.admin-bar .weh-css-test-area {
+  display: block;
 }
 
 /* ============================================
    3. Buttons (CTA Styles)
    ============================================ */
 
-.weh-btn {
+.weh-btn,
+.wp-element-button,
+button.button,
+input[type="submit"],
+.woocommerce button.button,
+.add_to_cart_button {
   display: inline-block;
-  padding: var(--weh-spacing-sm) var(--weh-spacing-lg);
+  padding: 14px 28px;
   font-family: var(--weh-font-body);
   font-size: 16px;
-  font-weight: 500;
-  line-height: 1.4;
+  font-weight: 600;
+  line-height: 1.5;
   text-decoration: none;
   border-radius: var(--weh-radius-md);
   border: none;
   cursor: pointer;
-  transition: var(--weh-transition);
+  transition: var(--weh-transition-fast);
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Primary Button */
-.weh-btn-primary {
-  background-color: var(--weh-deep-clay);
-  color: #FFFFFF;
+/* Primary Button - Warm Bronze (所有主按钮) */
+.weh-btn-primary,
+.wp-element-button.is-style-primary,
+button.button.alt,
+.woocommerce button.button.alt,
+.add_to_cart_button {
+  background-color: var(--weh-warm-bronze) !important;
+  color: #FFFFFF !important;
+  border: none !important;
 }
 
-.weh-btn-primary:hover {
-  background-color: #8B5A4A;
-  box-shadow: 0 4px 12px rgba(164, 103, 88, 0.3);
+.weh-btn-primary:hover,
+.wp-element-button.is-style-primary:hover,
+button.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.add_to_cart_button:hover {
+  background-color: var(--weh-warm-bronze-hover) !important;
+  box-shadow: var(--weh-shadow-md);
   transform: translateY(-2px);
+  color: #FFFFFF !important;
 }
 
-.weh-btn-primary:focus {
-  outline: 2px solid var(--weh-deep-clay);
+.weh-btn-primary:focus,
+.wp-element-button.is-style-primary:focus,
+button.button.alt:focus {
+  outline: 2px solid var(--weh-warm-bronze);
   outline-offset: 2px;
 }
 
-/* Secondary Button */
-.weh-btn-secondary {
-  background-color: transparent;
-  color: var(--weh-deep-clay);
-  border: 2px solid var(--weh-deep-clay);
+.weh-btn-primary:active {
+  transform: translateY(0);
 }
 
-.weh-btn-secondary:hover {
-  background-color: var(--weh-deep-clay);
-  color: #FFFFFF;
+/* Secondary Button */
+.weh-btn-secondary,
+.wp-element-button.is-style-secondary {
+  background-color: transparent !important;
+  color: var(--weh-warm-bronze) !important;
+  border: 2px solid var(--weh-warm-bronze) !important;
+}
+
+.weh-btn-secondary:hover,
+.wp-element-button.is-style-secondary:hover {
+  background-color: var(--weh-warm-bronze) !important;
+  color: #FFFFFF !important;
+  box-shadow: var(--weh-shadow-sm);
+  border-color: var(--weh-warm-bronze) !important;
 }
 
 /* Ghost Button */
@@ -185,7 +306,7 @@ p {
 }
 
 .weh-product-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--weh-shadow-lg);
   transform: translateY(-4px);
 }
 
@@ -223,7 +344,7 @@ p {
 .weh-product-card-price {
   font-size: 20px;
   font-weight: 600;
-  color: var(--weh-deep-clay);
+  color: var(--weh-warm-bronze);
   margin-bottom: var(--weh-spacing-sm);
 }
 
@@ -253,7 +374,8 @@ p {
 }
 
 .weh-series-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--weh-shadow-lg);
+  transform: translateY(-2px);
 }
 
 .weh-series-card-modern-earth {
@@ -509,7 +631,97 @@ p {
 }
 
 /* ============================================
-   15. Support Page Styles
+   15. Navigation Dropdown Menu Fixes
+   ============================================ */
+
+/* 修复下拉菜单文字颜色（Blocksy 主题） */
+nav .sub-menu,
+nav ul.sub-menu,
+nav li.menu-item-has-children ul,
+.ct-header-nav [data-sub-menu],
+.header-menu .sub-menu,
+.header-menu ul.sub-menu {
+  background-color: var(--weh-soft-ivory) !important;
+  border: 1px solid rgba(62, 74, 82, 0.1) !important;
+  border-radius: var(--weh-radius-md) !important;
+  box-shadow: var(--weh-shadow-md) !important;
+}
+
+/* 下拉菜单项文字颜色 - 确保可读性 */
+nav .sub-menu li a,
+nav ul.sub-menu li a,
+nav li.menu-item-has-children ul li a,
+.ct-header-nav [data-sub-menu] li a,
+.header-menu .sub-menu li a,
+.header-menu ul.sub-menu li a {
+  color: var(--weh-urban-slate) !important;
+  font-weight: 500 !important;
+  padding: var(--weh-spacing-sm) var(--weh-spacing-md) !important;
+  transition: var(--weh-transition-fast) !important;
+}
+
+/* 下拉菜单项悬停状态 */
+nav .sub-menu li a:hover,
+nav ul.sub-menu li a:hover,
+nav li.menu-item-has-children ul li a:hover,
+.ct-header-nav [data-sub-menu] li a:hover,
+.header-menu .sub-menu li a:hover,
+.header-menu ul.sub-menu li a:hover {
+  background-color: var(--weh-warm-sand) !important;
+  color: var(--weh-deep-clay) !important;
+}
+
+/* 下拉菜单当前项 */
+nav .sub-menu li.current-menu-item > a,
+nav ul.sub-menu li.current-menu-item > a,
+nav li.menu-item-has-children ul li.current-menu-item > a,
+.ct-header-nav [data-sub-menu] li.current-menu-item > a,
+.header-menu .sub-menu li.current-menu-item > a,
+.header-menu ul.sub-menu li.current-menu-item > a {
+  color: var(--weh-deep-clay) !important;
+  font-weight: 600 !important;
+  background-color: var(--weh-warm-sand) !important;
+}
+
+/* 通用下拉菜单文字颜色修复（兼容更多主题） */
+.dropdown-menu,
+.submenu,
+.menu-item .sub-menu,
+.menu-item .children {
+  background-color: var(--weh-soft-ivory) !important;
+  color: var(--weh-urban-slate) !important;
+}
+
+.dropdown-menu a,
+.submenu a,
+.menu-item .sub-menu a,
+.menu-item .children a {
+  color: var(--weh-urban-slate) !important;
+}
+
+.dropdown-menu a:hover,
+.submenu a:hover,
+.menu-item .sub-menu a:hover,
+.menu-item .children a:hover {
+  color: var(--weh-deep-clay) !important;
+  background-color: var(--weh-warm-sand) !important;
+}
+
+/* 确保菜单项文字在浅色背景下清晰可见 */
+nav a,
+.header-menu a,
+.ct-header-nav a {
+  color: var(--weh-urban-slate) !important;
+}
+
+nav a:hover,
+.header-menu a:hover,
+.ct-header-nav a:hover {
+  color: var(--weh-deep-clay) !important;
+}
+
+/* ============================================
+   16. Support Page Styles
    ============================================ */
 
 /* Hero Section */

@@ -361,6 +361,18 @@ get_header();
         <h2 class="weh-section-title">Contact Us</h2>
         <p class="weh-section-subtitle">We're here to help! Get in touch for product questions, styling advice, or support.</p>
         
+		<?php
+		$contact_status = isset($_GET['weh_contact']) ? sanitize_text_field(wp_unslash($_GET['weh_contact'])) : '';
+		if ($contact_status === 'success') : ?>
+			<div class="weh-notice weh-notice-success" role="status" aria-live="polite">
+				<p>Thanks for reaching out — your message has been sent. We’ll reply within 24 hours (weekdays).</p>
+			</div>
+		<?php elseif ($contact_status === 'invalid' || $contact_status === 'error') : ?>
+			<div class="weh-notice weh-notice-error" role="alert">
+				<p>Sorry, we couldn’t submit your message. Please check required fields and try again.</p>
+			</div>
+		<?php endif; ?>
+		
         <div class="weh-contact-grid">
             <div class="weh-contact-form-wrapper">
                 <?php
@@ -453,6 +465,17 @@ get_header();
         <div class="weh-newsletter-cta">
             <h2>Stay in our warm circle</h2>
             <p>Join our newsletter for installation tips, new product launches, and lighting inspiration.</p>
+			<?php
+			$newsletter_status = isset($_GET['weh_newsletter']) ? sanitize_text_field(wp_unslash($_GET['weh_newsletter'])) : '';
+			if ($newsletter_status === 'success') : ?>
+				<div class="weh-notice weh-notice-success" role="status" aria-live="polite">
+					<p>Thanks for joining! Please check your inbox to confirm your subscription.</p>
+				</div>
+			<?php elseif ($newsletter_status === 'invalid' || $newsletter_status === 'error') : ?>
+				<div class="weh-notice weh-notice-error" role="alert">
+					<p>Please enter a valid email address and try again.</p>
+				</div>
+			<?php endif; ?>
             <?php
             // Newsletter shortcode (can be customized via filter)
             $newsletter_shortcode = apply_filters('warmearthhome_newsletter_shortcode', '[newsletter_form]');

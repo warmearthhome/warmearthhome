@@ -12,7 +12,7 @@ get_header();
 
 <?php
 /**
- * Provide graceful fallbacks so页面在没有 ACF 数据时仍能渲染。
+ * Provide graceful fallbacks so the page can still render without ACF data.
  */
 $hero_slides = get_field('hero_slides');
 if (empty($hero_slides)) {

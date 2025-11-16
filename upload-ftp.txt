@@ -1,0 +1,10 @@
+open ftp.warmearthhome.com
+u443357553.wehtemp
+Czm@520240
+binary
+cd /home/u443357553/domains/warmearthhome.com/public_html/wp-content
+mkdir mu-plugins
+cd mu-plugins
+put warmearthhome-mu-plugin.php
+quit
+
