@@ -11,17 +11,33 @@
  * 注意：此脚本会读取 woo-products-sample.csv 文件
  */
 
+// 错误报告（仅用于调试）
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // 加载 WordPress
+if (!file_exists(__DIR__ . '/wp-load.php')) {
+    die('WordPress 未找到。请确保此文件在 WordPress 根目录。');
+}
 require_once(__DIR__ . '/wp-load.php');
 
-// 检查权限
-if (!current_user_can('manage_options')) {
-    wp_die('权限不足。需要管理员权限。');
+// 加载 WordPress 媒体函数
+require_once(ABSPATH . 'wp-admin/includes/media.php');
+require_once(ABSPATH . 'wp-admin/includes/file.php');
+require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+// 安全检查：使用密钥或管理员权限
+$secret_key = 'weh_import_2025_secure_key';
+$has_key = isset($_GET['key']) && $_GET['key'] === $secret_key;
+$has_permission = current_user_can('manage_options');
+
+if (!$has_key && !$has_permission) {
+    wp_die('权限不足。需要管理员权限或正确的密钥。');
 }
 
 // 检查参数
 if (!isset($_GET['weh_import']) || $_GET['weh_import'] !== '1') {
-    wp_die('请访问：?weh_import=1');
+    wp_die('请访问：?weh_import=1&key=YOUR_SECRET_KEY');
 }
 
 // 检查 WooCommerce 是否激活
@@ -48,9 +64,9 @@ echo '<style>
 </style>';
 
 // 读取 CSV
-$handle = fopen($csv_file, 'r');
+$handle = @fopen($csv_file, 'r');
 if ($handle === false) {
-    wp_die('无法打开 CSV 文件。');
+    wp_die('无法打开 CSV 文件：' . $csv_file . '<br>当前目录：' . __DIR__);
 }
 
 // 读取表头
@@ -113,10 +129,16 @@ while (($data = fgetcsv($handle)) !== false) {
     }
     
     // 保存产品
-    $product_id = $product->save();
-    
-    if (is_wp_error($product_id) || !$product_id) {
-        $errors[] = '创建产品失败：' . $row['name'] . ' - ' . ($product_id->get_error_message() ?? '未知错误');
+    try {
+        $product_id = $product->save();
+        
+        if (is_wp_error($product_id) || !$product_id) {
+            $error_msg = is_wp_error($product_id) ? $product_id->get_error_message() : '未知错误';
+            $errors[] = '创建产品失败：' . $row['name'] . ' - ' . $error_msg;
+            continue;
+        }
+    } catch (Exception $e) {
+        $errors[] = '创建产品异常：' . $row['name'] . ' - ' . $e->getMessage();
         continue;
     }
     

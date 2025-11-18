@@ -209,11 +209,22 @@ if (empty($hero_slides)) {
         <h2 class="weh-text-center weh-mb-lg">Best Sellers</h2>
         <?php
         if (function_exists('wc_get_products')) {
+            // Try to get featured products first, then fallback to all products
             $best_sellers = wc_get_products(array(
                 'limit' => 8,
-                'orderby' => 'popularity',
-                'order' => 'DESC',
+                'featured' => true,
+                'status' => 'publish',
             ));
+            
+            // If no featured products, get all products
+            if (empty($best_sellers)) {
+                $best_sellers = wc_get_products(array(
+                    'limit' => 8,
+                    'status' => 'publish',
+                    'orderby' => 'date',
+                    'order' => 'DESC',
+                ));
+            }
             
             if ($best_sellers) {
                 echo '<div class="weh-product-slider">';
