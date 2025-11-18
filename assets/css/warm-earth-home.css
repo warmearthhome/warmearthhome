@@ -364,6 +364,12 @@ button.button.alt:focus {
    6. Series Cards (Dual Series Highlights)
    ============================================ */
 
+.weh-series-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--weh-spacing-xl);
+}
+
 .weh-series-card {
   background-color: var(--weh-soft-ivory);
   border-radius: var(--weh-radius-md);
@@ -398,7 +404,310 @@ button.button.alt:focus {
 }
 
 /* ============================================
-   7. Trust Badges & Shipping Info
+   6.1. Shop by Space Grid
+   ============================================ */
+
+.weh-space-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--weh-spacing-lg);
+}
+
+.weh-space-card {
+  position: relative;
+  background-color: var(--weh-soft-ivory);
+  border-radius: var(--weh-radius-lg);
+  overflow: hidden;
+  transition: var(--weh-transition);
+  text-decoration: none;
+  color: inherit;
+}
+
+.weh-space-card:hover {
+  box-shadow: var(--weh-shadow-lg);
+  transform: translateY(-4px);
+}
+
+.weh-space-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.weh-space-card-content {
+  padding: var(--weh-spacing-md);
+}
+
+.weh-space-card-content h3 {
+  margin-bottom: var(--weh-spacing-xs);
+  color: var(--weh-urban-slate);
+}
+
+/* ============================================
+   6.2. Product Slider
+   ============================================ */
+
+.weh-product-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--weh-spacing-lg);
+}
+
+/* ============================================
+   6.3. Inspiration Grid
+   ============================================ */
+
+.weh-inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--weh-spacing-lg);
+}
+
+.weh-inspiration-card {
+  background-color: var(--weh-soft-ivory);
+  border-radius: var(--weh-radius-lg);
+  overflow: hidden;
+  transition: var(--weh-transition);
+}
+
+.weh-inspiration-card:hover {
+  box-shadow: var(--weh-shadow-lg);
+  transform: translateY(-4px);
+}
+
+.weh-inspiration-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.weh-inspiration-card-content {
+  padding: var(--weh-spacing-md);
+}
+
+.weh-inspiration-card-content h3 {
+  margin-bottom: var(--weh-spacing-xs);
+}
+
+.weh-inspiration-card-content p {
+  margin-bottom: var(--weh-spacing-sm);
+  max-width: none;
+}
+
+/* ============================================
+   6.4. Testimonials Grid
+   ============================================ */
+
+.weh-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--weh-spacing-lg);
+}
+
+.weh-testimonial-card {
+  background-color: var(--weh-soft-ivory);
+  padding: var(--weh-spacing-lg);
+  border-radius: var(--weh-radius-lg);
+  border: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-testimonial-rating {
+  color: var(--weh-warm-bronze);
+  font-size: 18px;
+  margin-bottom: var(--weh-spacing-sm);
+}
+
+.weh-testimonial-text {
+  font-style: italic;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-text-secondary);
+  max-width: none;
+}
+
+.weh-testimonial-author {
+  font-weight: 600;
+  color: var(--weh-urban-slate);
+  margin: 0;
+  max-width: none;
+}
+
+/* ============================================
+   6.5. Philosophy Grid
+   ============================================ */
+
+.weh-philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--weh-spacing-xxl);
+  align-items: center;
+}
+
+.weh-philosophy-content {
+  padding: var(--weh-spacing-lg);
+}
+
+.weh-philosophy-content blockquote {
+  font-size: 24px;
+  font-style: italic;
+  color: var(--weh-urban-slate);
+  margin-bottom: var(--weh-spacing-lg);
+  border-left: 4px solid var(--weh-warm-bronze);
+  padding-left: var(--weh-spacing-md);
+}
+
+.weh-philosophy-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--weh-spacing-lg);
+}
+
+.weh-philosophy-content li {
+  margin-bottom: var(--weh-spacing-md);
+  padding-left: var(--weh-spacing-md);
+  position: relative;
+}
+
+.weh-philosophy-content li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--weh-warm-bronze);
+  font-weight: bold;
+}
+
+.weh-philosophy-image {
+  position: relative;
+}
+
+.weh-philosophy-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--weh-radius-lg);
+  object-fit: cover;
+}
+
+.weh-philosophy-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, rgba(246, 233, 221, 0.45), rgba(255, 255, 248, 0.8));
+  border: 1px dashed rgba(62, 74, 82, 0.2);
+  border-radius: var(--weh-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--weh-urban-slate);
+}
+
+/* ============================================
+   7. Hero Banner
+   ============================================ */
+
+.weh-hero-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.weh-hero-slider {
+  position: relative;
+  width: 100%;
+}
+
+.weh-hero-slide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--weh-spacing-xxl);
+  padding: var(--weh-spacing-xxxl) var(--weh-spacing-lg);
+  min-height: 500px;
+}
+
+.weh-hero-content {
+  flex: 1;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.weh-hero-content h1 {
+  margin-bottom: var(--weh-spacing-md);
+}
+
+.weh-hero-subtitle {
+  font-size: 18px;
+  color: var(--weh-text-secondary);
+  margin-bottom: var(--weh-spacing-lg);
+  line-height: 1.6;
+}
+
+.weh-hero-cta {
+  display: flex;
+  gap: var(--weh-spacing-md);
+  flex-wrap: wrap;
+}
+
+.weh-hero-image {
+  flex: 1;
+  max-width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--weh-radius-lg);
+}
+
+.weh-hero-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--weh-spacing-xs);
+  margin-top: var(--weh-spacing-lg);
+}
+
+.weh-hero-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--weh-urban-slate);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--weh-transition-fast);
+}
+
+.weh-hero-dot:hover,
+.weh-hero-dot-active {
+  background: var(--weh-warm-bronze);
+  border-color: var(--weh-warm-bronze);
+}
+
+/* ============================================
+   7.1. Trust Bar (Service Guarantees)
+   ============================================ */
+
+.weh-trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--weh-spacing-md);
+  padding: var(--weh-spacing-sm) var(--weh-spacing-md);
+  background-color: var(--weh-soft-ivory);
+  border-bottom: 1px solid rgba(62, 74, 82, 0.1);
+  font-size: 14px;
+}
+
+.weh-trust-bar .weh-galaxy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  color: var(--weh-urban-slate);
+  font-weight: 500;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ============================================
+   7.2. Trust Badges & Shipping Info
    ============================================ */
 
 .weh-trust-badge {
@@ -721,7 +1030,277 @@ nav a:hover,
 }
 
 /* ============================================
-   16. Support Page Styles
+   16. Galaxy-Inspired Components (Uiverse.io)
+   ============================================ */
+
+/* Elevated pill buttons */
+.weh-galaxy-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 165, 116, 0.5);
+  background: linear-gradient(120deg, var(--weh-warm-bronze), #f2c595, var(--weh-warm-bronze));
+  background-size: 200% auto;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 32px rgba(164, 103, 88, 0.35);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  transition: background-position 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.weh-galaxy-btn::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.weh-galaxy-btn:hover {
+  background-position: 100% center;
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(164, 103, 88, 0.45);
+}
+
+.weh-galaxy-btn:hover::after {
+  opacity: 1;
+}
+
+.weh-galaxy-btn:focus-visible {
+  box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.35);
+}
+
+.weh-galaxy-btn-outline {
+  background: transparent;
+  color: var(--weh-warm-bronze) !important;
+  border-color: rgba(212, 165, 116, 0.65);
+  box-shadow: inset 0 0 0 1px rgba(212, 165, 116, 0.45);
+}
+
+.weh-galaxy-btn-outline::after {
+  display: none;
+}
+
+.weh-galaxy-btn-outline:hover {
+  background: rgba(212, 165, 116, 0.1);
+  color: var(--weh-warm-bronze) !important;
+}
+
+/* Elevated cards inspired by Galaxy UI */
+.weh-galaxy-surface {
+  position: relative;
+  border-radius: 24px;
+  border: 1px solid rgba(62, 74, 82, 0.08);
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)) var(--weh-soft-ivory);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 45px rgba(62, 74, 82, 0.12);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.weh-galaxy-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(242, 197, 149, 0.4), transparent 55%);
+  opacity: 0.35;
+  z-index: -1;
+}
+
+.weh-galaxy-surface:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(62, 74, 82, 0.18);
+}
+
+.weh-galaxy-surface__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--weh-deep-clay);
+  background: rgba(212, 165, 116, 0.15);
+}
+
+.weh-space-card.weh-galaxy-surface,
+.weh-inspiration-card.weh-galaxy-surface {
+  border-radius: 20px;
+}
+
+.weh-space-card.weh-galaxy-surface img,
+.weh-inspiration-card.weh-galaxy-surface img {
+  border-radius: 18px;
+}
+
+/* Chips & tooltips */
+.weh-galaxy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  color: var(--weh-urban-slate);
+  font-weight: 500;
+  position: relative;
+}
+
+.weh-galaxy-chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--weh-warm-bronze);
+  box-shadow: 0 0 10px rgba(212, 165, 116, 0.8);
+}
+
+[data-weh-tooltip] {
+  position: relative;
+}
+
+[data-weh-tooltip]::after {
+  content: attr(data-weh-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 200px;
+  padding: 10px 14px;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+[data-weh-tooltip]:hover::after,
+[data-weh-tooltip]:focus-visible::after {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .weh-galaxy-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   17. Footer Styles
+   ============================================ */
+
+.weh-footer {
+  background-color: var(--weh-soft-ivory);
+  padding: var(--weh-spacing-xxl) var(--weh-spacing-lg);
+  margin-top: var(--weh-spacing-xxxl);
+  border-top: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--weh-spacing-xl);
+  margin-bottom: var(--weh-spacing-lg);
+}
+
+.weh-footer-brand h3 {
+  font-size: 24px;
+  margin-bottom: var(--weh-spacing-sm);
+  color: var(--weh-urban-slate);
+}
+
+.weh-footer-brand p {
+  color: var(--weh-text-secondary);
+  margin-bottom: var(--weh-spacing-md);
+  max-width: none;
+}
+
+.weh-footer-social {
+  display: flex;
+  gap: var(--weh-spacing-md);
+}
+
+.weh-footer-social a {
+  color: var(--weh-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--weh-transition-fast);
+}
+
+.weh-footer-social a:hover {
+  color: var(--weh-deep-clay);
+}
+
+.weh-footer-links h4 {
+  font-size: 18px;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-urban-slate);
+}
+
+.weh-footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.weh-footer-links li {
+  margin-bottom: var(--weh-spacing-xs);
+}
+
+.weh-footer-links a {
+  color: var(--weh-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: var(--weh-transition-fast);
+}
+
+.weh-footer-links a:hover {
+  color: var(--weh-deep-clay);
+  text-decoration: underline;
+}
+
+.weh-footer-bottom {
+  margin-top: var(--weh-spacing-lg);
+  padding-top: var(--weh-spacing-lg);
+  border-top: 1px solid rgba(62, 74, 82, 0.1);
+  text-align: center;
+}
+
+.weh-footer-bottom p {
+  font-size: 14px;
+  color: var(--weh-text-secondary);
+  margin-bottom: var(--weh-spacing-xs);
+  max-width: none;
+}
+
+.weh-footer-bottom a {
+  color: var(--weh-text-secondary);
+  text-decoration: none;
+}
+
+.weh-footer-bottom a:hover {
+  color: var(--weh-deep-clay);
+  text-decoration: underline;
+}
+
+/* ============================================
+   17.1. Support Page Styles
    ============================================ */
 
 /* Hero Section */
@@ -1233,8 +1812,259 @@ nav a:hover,
   opacity: 0.9;
 }
 
-/* Responsive */
+/* ============================================
+   18. Mobile UX Optimizations (Issue #11)
+   ============================================ */
+
+/* Hero Section - Mobile: Vertical Stack, CTA Visible Above Fold */
 @media (max-width: 768px) {
+  .weh-hero-banner {
+    min-height: auto;
+    padding: var(--weh-spacing-lg) 0;
+  }
+  
+  .weh-hero-slide {
+    flex-direction: column;
+    gap: var(--weh-spacing-lg);
+    padding: var(--weh-spacing-md);
+  }
+  
+  .weh-hero-content {
+    order: 1;
+    text-align: center;
+    padding: 0;
+    max-width: 100%;
+  }
+  
+  .weh-hero-content h1 {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: var(--weh-spacing-sm);
+  }
+  
+  .weh-hero-subtitle {
+    font-size: 16px;
+    margin-bottom: var(--weh-spacing-md);
+  }
+  
+  .weh-hero-cta {
+    flex-direction: column;
+    gap: var(--weh-spacing-sm);
+    margin-top: var(--weh-spacing-md);
+  }
+  
+  .weh-hero-cta .weh-galaxy-btn {
+    width: 100%;
+    min-height: 48px; /* Touch target size */
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+  
+  .weh-hero-image {
+    order: 2;
+    width: 100%;
+    aspect-ratio: 4 / 5; /* 4:5 ratio for mobile */
+    object-fit: cover;
+    border-radius: var(--weh-radius-lg);
+  }
+  
+  .weh-hero-dots {
+    margin-top: var(--weh-spacing-md);
+  }
+}
+
+/* Trust Bar - Mobile: Single Row Scroll, Height Limit, No Logo Overlap */
+@media (max-width: 768px) {
+  .weh-trust-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    gap: var(--weh-spacing-sm);
+    padding: var(--weh-spacing-sm) var(--weh-spacing-md);
+    max-height: 64px;
+    position: relative;
+    z-index: 10; /* Below header but above content */
+    background-color: var(--weh-soft-ivory);
+    border-bottom: 1px solid rgba(62, 74, 82, 0.1);
+  }
+  
+  .weh-trust-bar::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  .weh-trust-bar .weh-galaxy-chip {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 8px 14px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Hide tooltip on mobile (touch devices) */
+  .weh-trust-bar [data-weh-tooltip]::after {
+    display: none;
+  }
+}
+
+/* Content Modules - Mobile: Single Column Cards + Horizontal Scroll */
+@media (max-width: 768px) {
+  /* Shop by Space Grid */
+  .weh-space-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--weh-spacing-md);
+  }
+  
+  .weh-space-card {
+    width: 100%;
+    min-height: 200px;
+  }
+  
+  /* Best Sellers / Product Slider */
+  .weh-product-slider {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--weh-spacing-md);
+    padding-bottom: var(--weh-spacing-sm);
+    scroll-snap-type: x mandatory;
+  }
+  
+  .weh-product-card {
+    flex: 0 0 calc(100% - var(--weh-spacing-md));
+    max-width: calc(100% - var(--weh-spacing-md));
+    scroll-snap-align: start;
+  }
+  
+  /* Inspiration Grid */
+  .weh-inspiration-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--weh-spacing-md);
+  }
+  
+  .weh-inspiration-card {
+    width: 100%;
+  }
+  
+  /* Series Cards */
+  .weh-series-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--weh-spacing-lg);
+  }
+  
+  /* Testimonials Grid */
+  .weh-testimonials-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--weh-spacing-md);
+  }
+  
+  /* Philosophy Grid */
+  .weh-philosophy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--weh-spacing-lg);
+  }
+  
+  .weh-philosophy-image {
+    order: -1; /* Image first on mobile */
+  }
+  
+  .weh-philosophy-image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--weh-radius-lg);
+  }
+}
+
+/* Footer - Mobile: Clean Layout, Remove Debug Text */
+@media (max-width: 768px) {
+  .weh-footer {
+    padding: var(--weh-spacing-xl) var(--weh-spacing-md);
+  }
+  
+  .weh-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--weh-spacing-lg);
+  }
+  
+  .weh-footer-links {
+    margin-bottom: var(--weh-spacing-md);
+  }
+  
+  .weh-footer-links h4 {
+    font-size: 16px;
+    margin-bottom: var(--weh-spacing-sm);
+  }
+  
+  .weh-footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .weh-footer-links li {
+    margin-bottom: var(--weh-spacing-xs);
+  }
+  
+  .weh-footer-links a {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--weh-text-secondary);
+    text-decoration: none;
+  }
+  
+  .weh-footer-links a:hover {
+    color: var(--weh-deep-clay);
+    text-decoration: underline;
+  }
+  
+  .weh-footer-bottom {
+    margin-top: var(--weh-spacing-lg);
+    padding-top: var(--weh-spacing-lg);
+    border-top: 1px solid rgba(62, 74, 82, 0.1);
+    text-align: center;
+  }
+  
+  .weh-footer-bottom p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: var(--weh-spacing-xs);
+    max-width: none;
+  }
+  
+  /* Hide any debug text like /html */
+  .weh-footer *:contains("/html"),
+  .weh-footer *:contains("&lt;html"),
+  .weh-footer *:contains("&lt;/html") {
+    display: none !important;
+  }
+}
+
+/* Global Mobile Touch Targets */
+@media (max-width: 768px) {
+  button,
+  .weh-btn,
+  a.weh-btn,
+  .weh-galaxy-btn,
+  input[type="submit"],
+  .add_to_cart_button {
+    min-height: 44px; /* iOS/Android touch target */
+    min-width: 44px;
+    padding: 12px 20px;
+  }
+  
   .weh-hero-title {
     font-size: 32px;
   }

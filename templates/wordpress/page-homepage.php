@@ -43,10 +43,10 @@ if (empty($hero_slides)) {
                         <h1><?php echo esc_html($slide['title']); ?></h1>
                         <p class="weh-hero-subtitle"><?php echo esc_html($slide['subtitle']); ?></p>
                         <div class="weh-hero-cta">
-                            <a href="<?php echo esc_url($slide['cta_1_link']); ?>" class="weh-btn weh-btn-primary">
+                            <a href="<?php echo esc_url($slide['cta_1_link']); ?>" class="weh-btn weh-btn-primary weh-galaxy-btn">
                                 <?php echo esc_html($slide['cta_1_text']); ?>
                             </a>
-                            <a href="<?php echo esc_url($slide['cta_2_link']); ?>" class="weh-btn weh-btn-secondary">
+                            <a href="<?php echo esc_url($slide['cta_2_link']); ?>" class="weh-btn weh-btn-secondary weh-galaxy-btn weh-galaxy-btn-outline">
                                 <?php echo esc_html($slide['cta_2_text']); ?>
                             </a>
                         </div>
@@ -91,7 +91,7 @@ if (empty($hero_slides)) {
             }
             if ($modern_earth) :
                 ?>
-                <div class="weh-series-card weh-series-card-modern-earth">
+                <div class="weh-series-card weh-series-card-modern-earth weh-galaxy-surface">
                     <?php if ($modern_earth['image']) : ?>
                         <img src="<?php echo esc_url($modern_earth['image']['url']); ?>" 
                              alt="<?php echo esc_attr($modern_earth['image']['alt']); ?>" 
@@ -100,7 +100,7 @@ if (empty($hero_slides)) {
                     <?php endif; ?>
                     <h2 class="weh-series-card-title"><?php echo esc_html($modern_earth['title']); ?></h2>
                     <p class="weh-series-card-description"><?php echo esc_html($modern_earth['description']); ?></p>
-                    <a href="<?php echo esc_url($modern_earth['link']); ?>" class="weh-btn weh-btn-primary">
+                    <a href="<?php echo esc_url($modern_earth['link']); ?>" class="weh-btn weh-btn-primary weh-galaxy-btn">
                         <?php echo esc_html($modern_earth['cta']); ?>
                     </a>
                 </div>
@@ -120,7 +120,7 @@ if (empty($hero_slides)) {
             }
             if ($urban_glow) :
                 ?>
-                <div class="weh-series-card weh-series-card-urban-glow">
+                <div class="weh-series-card weh-series-card-urban-glow weh-galaxy-surface">
                     <?php if ($urban_glow['image']) : ?>
                         <img src="<?php echo esc_url($urban_glow['image']['url']); ?>" 
                              alt="<?php echo esc_attr($urban_glow['image']['alt']); ?>" 
@@ -129,7 +129,7 @@ if (empty($hero_slides)) {
                     <?php endif; ?>
                     <h2 class="weh-series-card-title"><?php echo esc_html($urban_glow['title']); ?></h2>
                     <p class="weh-series-card-description"><?php echo esc_html($urban_glow['description']); ?></p>
-                    <a href="<?php echo esc_url($urban_glow['link']); ?>" class="weh-btn weh-btn-primary">
+                    <a href="<?php echo esc_url($urban_glow['link']); ?>" class="weh-btn weh-btn-primary weh-galaxy-btn">
                         <?php echo esc_html($urban_glow['cta']); ?>
                     </a>
                 </div>
@@ -150,7 +150,7 @@ if (empty($hero_slides)) {
             if ($spaces) {
                 foreach ($spaces as $space) {
                     ?>
-                    <a href="<?php echo esc_url($space['link']); ?>" class="weh-space-card">
+                    <a href="<?php echo esc_url($space['link']); ?>" class="weh-space-card weh-galaxy-surface">
                         <?php if (! empty($space['image'])) : ?>
                             <img src="<?php echo esc_url($space['image']['url']); ?>" 
                                  alt="<?php echo esc_attr($space['image']['alt']); ?>" 
@@ -189,7 +189,7 @@ if (empty($hero_slides)) {
                 );
                 foreach ($default_spaces as $space) :
                     ?>
-                    <a href="<?php echo esc_url($space['link']); ?>" class="weh-space-card">
+                    <a href="<?php echo esc_url($space['link']); ?>" class="weh-space-card weh-galaxy-surface">
                         <div class="weh-space-card-placeholder">
                             <h3><?php echo esc_html($space['title']); ?></h3>
                             <span class="weh-btn weh-btn-ghost"><?php echo esc_html($space['cta']); ?></span>
@@ -346,7 +346,7 @@ $inspiration_posts = get_posts(array(
                             <li><strong><?php echo esc_html($value['title']); ?></strong> – <?php echo esc_html($value['description']); ?></li>
                         <?php endforeach; ?>
                     </ul>
-                    <a href="<?php echo esc_url($philosophy['cta_link']); ?>" class="weh-btn weh-btn-primary">
+                    <a href="<?php echo esc_url($philosophy['cta_link']); ?>" class="weh-btn weh-btn-primary weh-galaxy-btn">
                         <?php echo esc_html($philosophy['cta_text']); ?>
                     </a>
                     <?php
@@ -358,7 +358,7 @@ $inspiration_posts = get_posts(array(
                         <li><strong><?php esc_html_e('Calm', 'warmearthhome'); ?></strong> – <?php esc_html_e('Muted palettes and natural materials that steady the senses.', 'warmearthhome'); ?></li>
                         <li><strong><?php esc_html_e('Simple', 'warmearthhome'); ?></strong> – <?php esc_html_e('Renter-friendly fittings tailored to Australian homes.', 'warmearthhome'); ?></li>
                     </ul>
-                    <a href="<?php echo esc_url(home_url('/about')); ?>" class="weh-btn weh-btn-primary">
+                    <a href="<?php echo esc_url(home_url('/about')); ?>" class="weh-btn weh-btn-primary weh-galaxy-btn">
                         <?php esc_html_e('Discover our story', 'warmearthhome'); ?>
                     </a>
                     <?php
@@ -453,7 +453,7 @@ endif;
                 <form class="weh-newsletter-fallback" action="<?php echo esc_url(home_url('/subscribe')); ?>" method="post">
                     <label class="screen-reader-text" for="weh-newsletter-email"><?php esc_html_e('Email address', 'warmearthhome'); ?></label>
                     <input type="email" id="weh-newsletter-email" name="email" placeholder="<?php esc_attr_e('you@example.com', 'warmearthhome'); ?>" required>
-                    <button type="submit" class="weh-btn weh-btn-primary"><?php esc_html_e('Subscribe', 'warmearthhome'); ?></button>
+                    <button type="submit" class="weh-btn weh-btn-primary weh-galaxy-btn"><?php esc_html_e('Subscribe', 'warmearthhome'); ?></button>
                 </form>
                 <?php
             }

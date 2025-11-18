@@ -140,10 +140,10 @@ function weh_mu_trust_bar_shortcode($atts = array()) {
 	ob_start();
 	?>
 	<nav class="weh-trust-bar" aria-label="Service guarantees">
-		<span aria-label="Free shipping over $150"><?php echo esc_html($args['free_shipping']); ?></span>
-		<span aria-label="30 day returns"><?php echo esc_html($args['returns']); ?></span>
-		<span aria-label="RCM certified"><?php echo esc_html($args['rcm']); ?></span>
-		<span aria-label="AU plug ready"><?php echo esc_html($args['au_plug']); ?></span>
+		<span class="weh-galaxy-chip" data-weh-tooltip="<?php esc_attr_e('Australia-wide shipping is free for orders over $150.', 'warmearthhome'); ?>" aria-label="Free shipping over $150"><?php echo esc_html($args['free_shipping']); ?></span>
+		<span class="weh-galaxy-chip" data-weh-tooltip="<?php esc_attr_e('Change of mind? Return your lights within 30 days.', 'warmearthhome'); ?>" aria-label="30 day returns"><?php echo esc_html($args['returns']); ?></span>
+		<span class="weh-galaxy-chip" data-weh-tooltip="<?php esc_attr_e('Electrical fittings meet Australian RCM safety requirements.', 'warmearthhome'); ?>" aria-label="RCM certified"><?php echo esc_html($args['rcm']); ?></span>
+		<span class="weh-galaxy-chip" data-weh-tooltip="<?php esc_attr_e('All lights ship with AU plug + 220-240V wiring.', 'warmearthhome'); ?>" aria-label="AU plug ready"><?php echo esc_html($args['au_plug']); ?></span>
 	</nav>
 	<?php
 	return ob_get_clean();
