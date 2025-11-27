@@ -11,16 +11,30 @@
    ============================================ */
 
 :root {
-  /* Primary Colors */
-  --weh-warm-sand: #F6E9DD;
-  --weh-soft-ivory: #FFFFF8;
-  --weh-deep-clay: #A46758;
-  --weh-urban-slate: #3E4A52;
-  --weh-accent-glow: #F3B46E;
+  /* Primary Colors - Warm Bronze (main brand color) */
+  --weh-warm-bronze: #D4A574;          /* Main CTA, buttons, prices */
+  --weh-warm-bronze-hover: #C49564;    /* 10% darker for hover states */
+  --weh-deep-clay: #A46758;            /* Secondary actions, borders */
+  --weh-urban-slate: #3E4A52;          /* Primary text, headings */
+  
+  /* Neutral Colors */
+  --weh-warm-sand: #F6E9DD;            /* Background, cards */
+  --weh-soft-ivory: #FFFFF8;           /* Card backgrounds, highlights */
+  --weh-light-gray: #F5F5F5;           /* Subtle backgrounds, dividers */
   
   /* Accent Colors */
-  --weh-green-tint: #C6D8C4;
-  --weh-amber: #E9C46A;
+  --weh-accent-glow: #F3B46E;          /* Highlights, badges */
+  --weh-amber: #E9C46A;                /* Subtle accents */
+  
+  /* Text Colors */
+  --weh-text-primary: #1a1a1a;         /* Primary text (16.5:1 contrast on white) */
+  --weh-text-secondary: #666666;       /* Secondary text (7.1:1 contrast on white) */
+  --weh-text-muted: #999999;           /* Captions, meta info */
+  
+  /* Status Colors */
+  --weh-success: #4A9B7F;              /* Success messages */
+  --weh-error: #C95A4A;                /* Error messages */
+  --weh-info: #3E4A52;                 /* Informational messages */
   
   /* Typography */
   --weh-font-heading: 'Playfair Display', 'Georgia', serif;
@@ -33,14 +47,24 @@
   --weh-spacing-lg: 32px;
   --weh-spacing-xl: 40px;
   --weh-spacing-xxl: 48px;
+  --weh-spacing-xxxl: 64px;
   
   /* Border Radius */
-  --weh-radius-sm: 4px;
-  --weh-radius-md: 8px;
-  --weh-radius-lg: 12px;
+  --weh-radius-sm: 4px;                /* Small elements, tags */
+  --weh-radius-md: 8px;                /* Buttons, cards, inputs (standard) */
+  --weh-radius-lg: 12px;               /* Large cards, hero sections */
+  --weh-radius-xl: 16px;               /* Special elements */
+  
+  /* Shadows */
+  --weh-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);      /* Subtle elevation */
+  --weh-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);      /* Cards, buttons */
+  --weh-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);     /* Hover states, elevated cards */
+  --weh-shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.15);    /* Modals, popups */
   
   /* Transitions */
-  --weh-transition: all 0.3s ease;
+  --weh-transition: all 0.3s ease;     /* Standard */
+  --weh-transition-fast: all 0.2s ease; /* Fast (hover states) */
+  --weh-transition-slow: all 0.5s ease; /* Slow (major animations) */
 }
 
 /* ============================================
@@ -54,15 +78,15 @@ body {
   font-family: var(--weh-font-body);
   font-size: 18px;
   line-height: 1.6;
-  color: var(--weh-urban-slate);
-  background-color: var(--weh-warm-sand);
+  color: var(--weh-text-primary);
+  background-color: #FFFFFF; /* Clean white background */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--weh-font-heading);
   font-weight: 600;
   line-height: 1.2;
-  color: var(--weh-urban-slate);
+  color: var(--weh-text-primary);
   margin-bottom: var(--weh-spacing-md);
 }
 
@@ -81,57 +105,154 @@ h3 {
   line-height: 1.4;
 }
 
+h4 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  body {
+    font-size: 16px;
+  }
+}
+
 p {
   max-width: 80ch; /* Limit paragraph width for readability */
   margin-bottom: var(--weh-spacing-md);
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Fix text stacking/overlapping issues */
+h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.2 !important;
+  letter-spacing: -0.01em; /* Slight letter spacing to prevent overlap */
+}
+
+h2 {
+  line-height: 1.3 !important;
+}
+
+h3 {
+  line-height: 1.4 !important;
+}
+
+/* Fix text in buttons */
+button,
+.wp-element-button,
+.weh-btn {
+  line-height: 1.5 !important;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fix CSS test area text stacking */
+.weh-css-test-area h2,
+.weh-css-test-area h3 {
+  line-height: 1.4 !important;
+  word-break: break-word;
+  white-space: normal;
+  overflow: visible;
+}
+
+/* Hide or fix test area if needed */
+.weh-css-test-area {
+  display: none; /* Hide test area on production */
+}
+
+/* Only show in development */
+body.admin-bar .weh-css-test-area {
+  display: block;
 }
 
 /* ============================================
    3. Buttons (CTA Styles)
    ============================================ */
 
-.weh-btn {
+.weh-btn,
+.wp-element-button,
+button.button,
+input[type="submit"],
+.woocommerce button.button,
+.add_to_cart_button {
   display: inline-block;
-  padding: var(--weh-spacing-sm) var(--weh-spacing-lg);
+  padding: 14px 28px;
   font-family: var(--weh-font-body);
   font-size: 16px;
-  font-weight: 500;
-  line-height: 1.4;
+  font-weight: 600;
+  line-height: 1.5;
   text-decoration: none;
   border-radius: var(--weh-radius-md);
   border: none;
   cursor: pointer;
-  transition: var(--weh-transition);
+  transition: var(--weh-transition-fast);
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Primary Button */
-.weh-btn-primary {
-  background-color: var(--weh-deep-clay);
-  color: #FFFFFF;
+/* Primary Button - Warm Bronze (所有主按钮) */
+.weh-btn-primary,
+.wp-element-button.is-style-primary,
+button.button.alt,
+.woocommerce button.button.alt,
+.add_to_cart_button {
+  background-color: var(--weh-warm-bronze) !important;
+  color: #FFFFFF !important;
+  border: none !important;
 }
 
-.weh-btn-primary:hover {
-  background-color: #8B5A4A;
-  box-shadow: 0 4px 12px rgba(164, 103, 88, 0.3);
+.weh-btn-primary:hover,
+.wp-element-button.is-style-primary:hover,
+button.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.add_to_cart_button:hover {
+  background-color: var(--weh-warm-bronze-hover) !important;
+  box-shadow: var(--weh-shadow-md);
   transform: translateY(-2px);
+  color: #FFFFFF !important;
 }
 
-.weh-btn-primary:focus {
-  outline: 2px solid var(--weh-deep-clay);
+.weh-btn-primary:focus,
+.wp-element-button.is-style-primary:focus,
+button.button.alt:focus {
+  outline: 2px solid var(--weh-warm-bronze);
   outline-offset: 2px;
 }
 
-/* Secondary Button */
-.weh-btn-secondary {
-  background-color: transparent;
-  color: var(--weh-deep-clay);
-  border: 2px solid var(--weh-deep-clay);
+.weh-btn-primary:active {
+  transform: translateY(0);
 }
 
-.weh-btn-secondary:hover {
-  background-color: var(--weh-deep-clay);
-  color: #FFFFFF;
+/* Secondary Button */
+.weh-btn-secondary,
+.wp-element-button.is-style-secondary {
+  background-color: transparent !important;
+  color: var(--weh-warm-bronze) !important;
+  border: 2px solid var(--weh-warm-bronze) !important;
+}
+
+.weh-btn-secondary:hover,
+.wp-element-button.is-style-secondary:hover {
+  background-color: var(--weh-warm-bronze) !important;
+  color: #FFFFFF !important;
+  box-shadow: var(--weh-shadow-sm);
+  border-color: var(--weh-warm-bronze) !important;
 }
 
 /* Ghost Button */
@@ -185,7 +306,7 @@ p {
 }
 
 .weh-product-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--weh-shadow-lg);
   transform: translateY(-4px);
 }
 
@@ -198,6 +319,15 @@ p {
 
 .weh-product-card:hover .weh-product-card-image {
   transform: scale(1.03);
+}
+
+.weh-product-placeholder {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px dashed rgba(62, 74, 82, 0.25);
+  border-radius: var(--weh-radius-md);
+  padding: var(--weh-spacing-xl);
+  text-align: center;
+  color: var(--weh-urban-slate);
 }
 
 .weh-product-card-content {
@@ -214,7 +344,7 @@ p {
 .weh-product-card-price {
   font-size: 20px;
   font-weight: 600;
-  color: var(--weh-deep-clay);
+  color: var(--weh-warm-bronze);
   margin-bottom: var(--weh-spacing-sm);
 }
 
@@ -234,6 +364,12 @@ p {
    6. Series Cards (Dual Series Highlights)
    ============================================ */
 
+.weh-series-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--weh-spacing-xl);
+}
+
 .weh-series-card {
   background-color: var(--weh-soft-ivory);
   border-radius: var(--weh-radius-md);
@@ -244,7 +380,8 @@ p {
 }
 
 .weh-series-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--weh-shadow-lg);
+  transform: translateY(-2px);
 }
 
 .weh-series-card-modern-earth {
@@ -267,7 +404,310 @@ p {
 }
 
 /* ============================================
-   7. Trust Badges & Shipping Info
+   6.1. Shop by Space Grid
+   ============================================ */
+
+.weh-space-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--weh-spacing-lg);
+}
+
+.weh-space-card {
+  position: relative;
+  background-color: var(--weh-soft-ivory);
+  border-radius: var(--weh-radius-lg);
+  overflow: hidden;
+  transition: var(--weh-transition);
+  text-decoration: none;
+  color: inherit;
+}
+
+.weh-space-card:hover {
+  box-shadow: var(--weh-shadow-lg);
+  transform: translateY(-4px);
+}
+
+.weh-space-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.weh-space-card-content {
+  padding: var(--weh-spacing-md);
+}
+
+.weh-space-card-content h3 {
+  margin-bottom: var(--weh-spacing-xs);
+  color: var(--weh-urban-slate);
+}
+
+/* ============================================
+   6.2. Product Slider
+   ============================================ */
+
+.weh-product-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--weh-spacing-lg);
+}
+
+/* ============================================
+   6.3. Inspiration Grid
+   ============================================ */
+
+.weh-inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--weh-spacing-lg);
+}
+
+.weh-inspiration-card {
+  background-color: var(--weh-soft-ivory);
+  border-radius: var(--weh-radius-lg);
+  overflow: hidden;
+  transition: var(--weh-transition);
+}
+
+.weh-inspiration-card:hover {
+  box-shadow: var(--weh-shadow-lg);
+  transform: translateY(-4px);
+}
+
+.weh-inspiration-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.weh-inspiration-card-content {
+  padding: var(--weh-spacing-md);
+}
+
+.weh-inspiration-card-content h3 {
+  margin-bottom: var(--weh-spacing-xs);
+}
+
+.weh-inspiration-card-content p {
+  margin-bottom: var(--weh-spacing-sm);
+  max-width: none;
+}
+
+/* ============================================
+   6.4. Testimonials Grid
+   ============================================ */
+
+.weh-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--weh-spacing-lg);
+}
+
+.weh-testimonial-card {
+  background-color: var(--weh-soft-ivory);
+  padding: var(--weh-spacing-lg);
+  border-radius: var(--weh-radius-lg);
+  border: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-testimonial-rating {
+  color: var(--weh-warm-bronze);
+  font-size: 18px;
+  margin-bottom: var(--weh-spacing-sm);
+}
+
+.weh-testimonial-text {
+  font-style: italic;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-text-secondary);
+  max-width: none;
+}
+
+.weh-testimonial-author {
+  font-weight: 600;
+  color: var(--weh-urban-slate);
+  margin: 0;
+  max-width: none;
+}
+
+/* ============================================
+   6.5. Philosophy Grid
+   ============================================ */
+
+.weh-philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--weh-spacing-xxl);
+  align-items: center;
+}
+
+.weh-philosophy-content {
+  padding: var(--weh-spacing-lg);
+}
+
+.weh-philosophy-content blockquote {
+  font-size: 24px;
+  font-style: italic;
+  color: var(--weh-urban-slate);
+  margin-bottom: var(--weh-spacing-lg);
+  border-left: 4px solid var(--weh-warm-bronze);
+  padding-left: var(--weh-spacing-md);
+}
+
+.weh-philosophy-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--weh-spacing-lg);
+}
+
+.weh-philosophy-content li {
+  margin-bottom: var(--weh-spacing-md);
+  padding-left: var(--weh-spacing-md);
+  position: relative;
+}
+
+.weh-philosophy-content li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--weh-warm-bronze);
+  font-weight: bold;
+}
+
+.weh-philosophy-image {
+  position: relative;
+}
+
+.weh-philosophy-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--weh-radius-lg);
+  object-fit: cover;
+}
+
+.weh-philosophy-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, rgba(246, 233, 221, 0.45), rgba(255, 255, 248, 0.8));
+  border: 1px dashed rgba(62, 74, 82, 0.2);
+  border-radius: var(--weh-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--weh-urban-slate);
+}
+
+/* ============================================
+   7. Hero Banner
+   ============================================ */
+
+.weh-hero-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.weh-hero-slider {
+  position: relative;
+  width: 100%;
+}
+
+.weh-hero-slide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--weh-spacing-xxl);
+  padding: var(--weh-spacing-xxxl) var(--weh-spacing-lg);
+  min-height: 500px;
+}
+
+.weh-hero-content {
+  flex: 1;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.weh-hero-content h1 {
+  margin-bottom: var(--weh-spacing-md);
+}
+
+.weh-hero-subtitle {
+  font-size: 18px;
+  color: var(--weh-text-secondary);
+  margin-bottom: var(--weh-spacing-lg);
+  line-height: 1.6;
+}
+
+.weh-hero-cta {
+  display: flex;
+  gap: var(--weh-spacing-md);
+  flex-wrap: wrap;
+}
+
+.weh-hero-image {
+  flex: 1;
+  max-width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--weh-radius-lg);
+}
+
+.weh-hero-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--weh-spacing-xs);
+  margin-top: var(--weh-spacing-lg);
+}
+
+.weh-hero-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--weh-urban-slate);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--weh-transition-fast);
+}
+
+.weh-hero-dot:hover,
+.weh-hero-dot-active {
+  background: var(--weh-warm-bronze);
+  border-color: var(--weh-warm-bronze);
+}
+
+/* ============================================
+   7.1. Trust Bar (Service Guarantees)
+   ============================================ */
+
+.weh-trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--weh-spacing-md);
+  padding: var(--weh-spacing-sm) var(--weh-spacing-md);
+  background-color: var(--weh-soft-ivory);
+  border-bottom: 1px solid rgba(62, 74, 82, 0.1);
+  font-size: 14px;
+}
+
+.weh-trust-bar .weh-galaxy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  color: var(--weh-urban-slate);
+  font-weight: 500;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ============================================
+   7.2. Trust Badges & Shipping Info
    ============================================ */
 
 .weh-trust-badge {
@@ -456,5 +896,1203 @@ p {
 *:focus-visible {
   outline: 2px solid var(--weh-deep-clay);
   outline-offset: 2px;
+}
+
+/* --------------------------------------------
+   Fallback & Placeholder Helpers
+   -------------------------------------------- */
+.weh-space-card-placeholder,
+.weh-inspiration-card-placeholder,
+.weh-philosophy-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--weh-spacing-xl);
+  background: linear-gradient(135deg, rgba(246, 233, 221, 0.45), rgba(255, 255, 248, 0.8));
+  border: 1px dashed rgba(62, 74, 82, 0.2);
+  border-radius: var(--weh-radius-lg);
+  min-height: 220px;
+  text-align: center;
+  color: var(--weh-urban-slate);
+}
+
+.weh-inspiration-card-placeholder {
+  min-height: 200px;
+}
+
+.weh-newsletter-fallback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--weh-spacing-sm);
+  margin-top: var(--weh-spacing-md);
+}
+
+.weh-newsletter-fallback input[type="email"] {
+  flex: 1 1 260px;
+  padding: var(--weh-spacing-sm);
+  border: 1px solid rgba(62, 74, 82, 0.2);
+  border-radius: var(--weh-radius-md);
+  font-size: 16px;
+}
+
+.weh-newsletter-fallback button {
+  flex: 0 0 auto;
+}
+
+/* ============================================
+   15. Navigation Dropdown Menu Fixes
+   ============================================ */
+
+/* 修复下拉菜单文字颜色（Blocksy 主题） */
+nav .sub-menu,
+nav ul.sub-menu,
+nav li.menu-item-has-children ul,
+.ct-header-nav [data-sub-menu],
+.header-menu .sub-menu,
+.header-menu ul.sub-menu {
+  background-color: var(--weh-soft-ivory) !important;
+  border: 1px solid rgba(62, 74, 82, 0.1) !important;
+  border-radius: var(--weh-radius-md) !important;
+  box-shadow: var(--weh-shadow-md) !important;
+}
+
+/* 下拉菜单项文字颜色 - 确保可读性 */
+nav .sub-menu li a,
+nav ul.sub-menu li a,
+nav li.menu-item-has-children ul li a,
+.ct-header-nav [data-sub-menu] li a,
+.header-menu .sub-menu li a,
+.header-menu ul.sub-menu li a {
+  color: var(--weh-urban-slate) !important;
+  font-weight: 500 !important;
+  padding: var(--weh-spacing-sm) var(--weh-spacing-md) !important;
+  transition: var(--weh-transition-fast) !important;
+}
+
+/* 下拉菜单项悬停状态 */
+nav .sub-menu li a:hover,
+nav ul.sub-menu li a:hover,
+nav li.menu-item-has-children ul li a:hover,
+.ct-header-nav [data-sub-menu] li a:hover,
+.header-menu .sub-menu li a:hover,
+.header-menu ul.sub-menu li a:hover {
+  background-color: var(--weh-warm-sand) !important;
+  color: var(--weh-deep-clay) !important;
+}
+
+/* 下拉菜单当前项 */
+nav .sub-menu li.current-menu-item > a,
+nav ul.sub-menu li.current-menu-item > a,
+nav li.menu-item-has-children ul li.current-menu-item > a,
+.ct-header-nav [data-sub-menu] li.current-menu-item > a,
+.header-menu .sub-menu li.current-menu-item > a,
+.header-menu ul.sub-menu li.current-menu-item > a {
+  color: var(--weh-deep-clay) !important;
+  font-weight: 600 !important;
+  background-color: var(--weh-warm-sand) !important;
+}
+
+/* 通用下拉菜单文字颜色修复（兼容更多主题） */
+.dropdown-menu,
+.submenu,
+.menu-item .sub-menu,
+.menu-item .children {
+  background-color: var(--weh-soft-ivory) !important;
+  color: var(--weh-urban-slate) !important;
+}
+
+.dropdown-menu a,
+.submenu a,
+.menu-item .sub-menu a,
+.menu-item .children a {
+  color: var(--weh-urban-slate) !important;
+}
+
+.dropdown-menu a:hover,
+.submenu a:hover,
+.menu-item .sub-menu a:hover,
+.menu-item .children a:hover {
+  color: var(--weh-deep-clay) !important;
+  background-color: var(--weh-warm-sand) !important;
+}
+
+/* 确保菜单项文字在浅色背景下清晰可见 */
+nav a,
+.header-menu a,
+.ct-header-nav a {
+  color: var(--weh-urban-slate) !important;
+}
+
+nav a:hover,
+.header-menu a:hover,
+.ct-header-nav a:hover {
+  color: var(--weh-deep-clay) !important;
+}
+
+/* ============================================
+   16. Galaxy-Inspired Components (Uiverse.io)
+   ============================================ */
+
+/* Elevated pill buttons */
+.weh-galaxy-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 165, 116, 0.5);
+  background: linear-gradient(120deg, var(--weh-warm-bronze), #f2c595, var(--weh-warm-bronze));
+  background-size: 200% auto;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 32px rgba(164, 103, 88, 0.35);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  transition: background-position 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.weh-galaxy-btn::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.weh-galaxy-btn:hover {
+  background-position: 100% center;
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(164, 103, 88, 0.45);
+}
+
+.weh-galaxy-btn:hover::after {
+  opacity: 1;
+}
+
+.weh-galaxy-btn:focus-visible {
+  box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.35);
+}
+
+.weh-galaxy-btn-outline {
+  background: transparent;
+  color: var(--weh-warm-bronze) !important;
+  border-color: rgba(212, 165, 116, 0.65);
+  box-shadow: inset 0 0 0 1px rgba(212, 165, 116, 0.45);
+}
+
+.weh-galaxy-btn-outline::after {
+  display: none;
+}
+
+.weh-galaxy-btn-outline:hover {
+  background: rgba(212, 165, 116, 0.1);
+  color: var(--weh-warm-bronze) !important;
+}
+
+/* Elevated cards inspired by Galaxy UI */
+.weh-galaxy-surface {
+  position: relative;
+  border-radius: 24px;
+  border: 1px solid rgba(62, 74, 82, 0.08);
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)) var(--weh-soft-ivory);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 45px rgba(62, 74, 82, 0.12);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.weh-galaxy-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(242, 197, 149, 0.4), transparent 55%);
+  opacity: 0.35;
+  z-index: -1;
+}
+
+.weh-galaxy-surface:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(62, 74, 82, 0.18);
+}
+
+.weh-galaxy-surface__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--weh-deep-clay);
+  background: rgba(212, 165, 116, 0.15);
+}
+
+.weh-space-card.weh-galaxy-surface,
+.weh-inspiration-card.weh-galaxy-surface {
+  border-radius: 20px;
+}
+
+.weh-space-card.weh-galaxy-surface img,
+.weh-inspiration-card.weh-galaxy-surface img {
+  border-radius: 18px;
+}
+
+/* Chips & tooltips */
+.weh-galaxy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  color: var(--weh-urban-slate);
+  font-weight: 500;
+  position: relative;
+}
+
+.weh-galaxy-chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--weh-warm-bronze);
+  box-shadow: 0 0 10px rgba(212, 165, 116, 0.8);
+}
+
+[data-weh-tooltip] {
+  position: relative;
+}
+
+[data-weh-tooltip]::after {
+  content: attr(data-weh-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 200px;
+  padding: 10px 14px;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+[data-weh-tooltip]:hover::after,
+[data-weh-tooltip]:focus-visible::after {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .weh-galaxy-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   17. Footer Styles
+   ============================================ */
+
+.weh-footer {
+  background-color: var(--weh-soft-ivory);
+  padding: var(--weh-spacing-xxl) var(--weh-spacing-lg);
+  margin-top: var(--weh-spacing-xxxl);
+  border-top: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--weh-spacing-xl);
+  margin-bottom: var(--weh-spacing-lg);
+}
+
+.weh-footer-brand h3 {
+  font-size: 24px;
+  margin-bottom: var(--weh-spacing-sm);
+  color: var(--weh-urban-slate);
+}
+
+.weh-footer-brand p {
+  color: var(--weh-text-secondary);
+  margin-bottom: var(--weh-spacing-md);
+  max-width: none;
+}
+
+.weh-footer-social {
+  display: flex;
+  gap: var(--weh-spacing-md);
+}
+
+.weh-footer-social a {
+  color: var(--weh-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--weh-transition-fast);
+}
+
+.weh-footer-social a:hover {
+  color: var(--weh-deep-clay);
+}
+
+.weh-footer-links h4 {
+  font-size: 18px;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-urban-slate);
+}
+
+.weh-footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.weh-footer-links li {
+  margin-bottom: var(--weh-spacing-xs);
+}
+
+.weh-footer-links a {
+  color: var(--weh-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: var(--weh-transition-fast);
+}
+
+.weh-footer-links a:hover {
+  color: var(--weh-deep-clay);
+  text-decoration: underline;
+}
+
+.weh-footer-bottom {
+  margin-top: var(--weh-spacing-lg);
+  padding-top: var(--weh-spacing-lg);
+  border-top: 1px solid rgba(62, 74, 82, 0.1);
+  text-align: center;
+}
+
+.weh-footer-bottom p {
+  font-size: 14px;
+  color: var(--weh-text-secondary);
+  margin-bottom: var(--weh-spacing-xs);
+  max-width: none;
+}
+
+.weh-footer-bottom a {
+  color: var(--weh-text-secondary);
+  text-decoration: none;
+}
+
+.weh-footer-bottom a:hover {
+  color: var(--weh-deep-clay);
+  text-decoration: underline;
+}
+
+/* ============================================
+   17.1. Support Page Styles
+   ============================================ */
+
+/* Hero Section */
+.weh-hero-section {
+  background: linear-gradient(135deg, var(--weh-warm-sand) 0%, var(--weh-soft-ivory) 100%);
+  padding: var(--weh-spacing-xxl) 0;
+  text-align: center;
+}
+
+.weh-hero-title {
+  font-size: 42px;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-urban-slate);
+}
+
+.weh-hero-subtitle {
+  font-size: 18px;
+  color: var(--weh-urban-slate);
+  opacity: 0.8;
+  margin-bottom: var(--weh-spacing-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Quick Links Grid */
+.weh-quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--weh-spacing-md);
+  margin-top: var(--weh-spacing-lg);
+}
+
+.weh-quick-link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--weh-spacing-lg);
+  background: var(--weh-soft-ivory);
+  border: 1px solid rgba(62, 74, 82, 0.1);
+  border-radius: var(--weh-radius-lg);
+  text-decoration: none;
+  color: var(--weh-urban-slate);
+  transition: var(--weh-transition);
+  text-align: center;
+}
+
+.weh-quick-link-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(62, 74, 82, 0.1);
+  border-color: var(--weh-deep-clay);
+}
+
+.weh-quick-link-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--weh-spacing-sm);
+  color: var(--weh-deep-clay);
+}
+
+.weh-quick-link-card h3 {
+  font-size: 18px;
+  margin-bottom: var(--weh-spacing-xs);
+  color: var(--weh-urban-slate);
+}
+
+.weh-quick-link-card p {
+  font-size: 14px;
+  color: var(--weh-urban-slate);
+  opacity: 0.7;
+  margin: 0;
+  max-width: none;
+}
+
+/* FAQ Accordion */
+.weh-faq-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.weh-faq-category {
+  margin-bottom: var(--weh-spacing-xl);
+}
+
+.weh-faq-category-title {
+  font-size: 24px;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-urban-slate);
+  border-bottom: 2px solid var(--weh-warm-sand);
+  padding-bottom: var(--weh-spacing-xs);
+}
+
+.weh-faq-item {
+  margin-bottom: var(--weh-spacing-sm);
+  border: 1px solid rgba(62, 74, 82, 0.1);
+  border-radius: var(--weh-radius-md);
+  overflow: hidden;
+  background: var(--weh-soft-ivory);
+}
+
+.weh-faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--weh-spacing-md);
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-family: var(--weh-font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--weh-urban-slate);
+  cursor: pointer;
+  transition: var(--weh-transition);
+}
+
+.weh-faq-question:hover {
+  background: var(--weh-warm-sand);
+}
+
+.weh-faq-question[aria-expanded="true"] {
+  background: var(--weh-warm-sand);
+}
+
+.weh-faq-question[aria-expanded="true"] .weh-faq-icon {
+  transform: rotate(180deg);
+}
+
+.weh-faq-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-left: var(--weh-spacing-sm);
+  transition: transform 0.3s ease;
+  color: var(--weh-deep-clay);
+}
+
+.weh-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 var(--weh-spacing-md);
+}
+
+.weh-faq-answer.active {
+  max-height: 500px;
+  padding: 0 var(--weh-spacing-md) var(--weh-spacing-md);
+}
+
+.weh-faq-answer p {
+  margin-bottom: var(--weh-spacing-sm);
+  max-width: none;
+}
+
+.weh-faq-answer a {
+  color: var(--weh-deep-clay);
+  text-decoration: underline;
+}
+
+.weh-faq-cta {
+  text-align: center;
+  margin-top: var(--weh-spacing-xl);
+  padding-top: var(--weh-spacing-lg);
+  border-top: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-faq-cta a {
+  color: var(--weh-deep-clay);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.weh-faq-cta a:hover {
+  text-decoration: underline;
+}
+
+/* Shipping & Returns */
+.weh-shipping-returns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--weh-spacing-xl);
+  margin-top: var(--weh-spacing-lg);
+}
+
+.weh-shipping-info,
+.weh-returns-info {
+  background: var(--weh-soft-ivory);
+  padding: var(--weh-spacing-lg);
+  border-radius: var(--weh-radius-lg);
+  border: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-shipping-info h3,
+.weh-returns-info h3 {
+  font-size: 20px;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-deep-clay);
+}
+
+.weh-shipping-info ul,
+.weh-returns-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.weh-shipping-info li,
+.weh-returns-info li {
+  padding: var(--weh-spacing-xs) 0;
+  padding-left: var(--weh-spacing-md);
+  position: relative;
+}
+
+.weh-shipping-info li::before,
+.weh-returns-info li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--weh-deep-clay);
+  font-weight: bold;
+}
+
+.weh-returns-note {
+  margin-top: var(--weh-spacing-md);
+  padding: var(--weh-spacing-sm);
+  background: var(--weh-warm-sand);
+  border-radius: var(--weh-radius-sm);
+  font-size: 14px;
+  max-width: none;
+}
+
+.weh-shipping-cta {
+  text-align: center;
+  margin-top: var(--weh-spacing-lg);
+}
+
+/* Installation Guides */
+.weh-installation-tabs {
+  display: flex;
+  gap: var(--weh-spacing-sm);
+  margin-bottom: var(--weh-spacing-lg);
+  border-bottom: 2px solid var(--weh-warm-sand);
+}
+
+.weh-installation-tab {
+  padding: var(--weh-spacing-sm) var(--weh-spacing-lg);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: var(--weh-font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--weh-urban-slate);
+  cursor: pointer;
+  transition: var(--weh-transition);
+  margin-bottom: -2px;
+}
+
+.weh-installation-tab:hover {
+  color: var(--weh-deep-clay);
+}
+
+.weh-installation-tab-active {
+  color: var(--weh-deep-clay);
+  border-bottom-color: var(--weh-deep-clay);
+}
+
+.weh-installation-content {
+  position: relative;
+  min-height: 200px;
+}
+
+.weh-installation-panel {
+  display: none;
+  padding: var(--weh-spacing-lg);
+  background: var(--weh-soft-ivory);
+  border-radius: var(--weh-radius-lg);
+}
+
+.weh-installation-panel-active {
+  display: block;
+}
+
+.weh-installation-panel h3 {
+  font-size: 20px;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-deep-clay);
+}
+
+.weh-installation-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: var(--weh-spacing-md) 0;
+}
+
+.weh-installation-panel li {
+  padding: var(--weh-spacing-xs) 0;
+  padding-left: var(--weh-spacing-md);
+  position: relative;
+}
+
+.weh-installation-panel li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--weh-deep-clay);
+  font-weight: bold;
+}
+
+.weh-installation-downloads {
+  margin-top: var(--weh-spacing-xl);
+  padding-top: var(--weh-spacing-lg);
+  border-top: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-installation-downloads h3 {
+  font-size: 20px;
+  margin-bottom: var(--weh-spacing-md);
+  color: var(--weh-urban-slate);
+}
+
+.weh-download-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--weh-spacing-sm);
+}
+
+.weh-download-item {
+  background: var(--weh-soft-ivory);
+  border: 1px solid rgba(62, 74, 82, 0.1);
+  border-radius: var(--weh-radius-md);
+  overflow: hidden;
+}
+
+.weh-download-link {
+  display: flex;
+  align-items: center;
+  gap: var(--weh-spacing-sm);
+  padding: var(--weh-spacing-md);
+  text-decoration: none;
+  color: var(--weh-urban-slate);
+  transition: var(--weh-transition);
+}
+
+.weh-download-link:hover {
+  background: var(--weh-warm-sand);
+  color: var(--weh-deep-clay);
+}
+
+.weh-download-link svg {
+  flex-shrink: 0;
+  color: var(--weh-deep-clay);
+}
+
+/* Contact Form */
+.weh-section-alt {
+  background: var(--weh-warm-sand);
+}
+
+.weh-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--weh-spacing-xl);
+  margin-top: var(--weh-spacing-lg);
+}
+
+.weh-contact-form-wrapper {
+  background: var(--weh-soft-ivory);
+  padding: var(--weh-spacing-xl);
+  border-radius: var(--weh-radius-lg);
+  border: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--weh-spacing-md);
+}
+
+.weh-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.weh-form-group label {
+  font-weight: 500;
+  margin-bottom: var(--weh-spacing-xs);
+  color: var(--weh-urban-slate);
+}
+
+.weh-required {
+  color: var(--weh-deep-clay);
+}
+
+.weh-form-group input,
+.weh-form-group select,
+.weh-form-group textarea {
+  padding: var(--weh-spacing-sm);
+  border: 1px solid rgba(62, 74, 82, 0.2);
+  border-radius: var(--weh-radius-md);
+  font-family: var(--weh-font-body);
+  font-size: 16px;
+  color: var(--weh-urban-slate);
+  transition: var(--weh-transition);
+}
+
+.weh-form-group input:focus,
+.weh-form-group select:focus,
+.weh-form-group textarea:focus {
+  outline: none;
+  border-color: var(--weh-deep-clay);
+  box-shadow: 0 0 0 3px rgba(164, 103, 88, 0.1);
+}
+
+.weh-form-group input.error,
+.weh-form-group select.error,
+.weh-form-group textarea.error {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+.weh-form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.weh-form-note {
+  font-size: 14px;
+  color: var(--weh-urban-slate);
+  opacity: 0.7;
+  margin-top: var(--weh-spacing-sm);
+  max-width: none;
+}
+
+.weh-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--weh-spacing-md);
+}
+
+.weh-contact-card {
+  background: var(--weh-soft-ivory);
+  padding: var(--weh-spacing-lg);
+  border-radius: var(--weh-radius-lg);
+  border: 1px solid rgba(62, 74, 82, 0.1);
+}
+
+.weh-contact-card h3 {
+  font-size: 20px;
+  margin-bottom: var(--weh-spacing-sm);
+  color: var(--weh-deep-clay);
+}
+
+.weh-contact-card p {
+  margin-bottom: var(--weh-spacing-sm);
+  max-width: none;
+}
+
+.weh-contact-card a {
+  color: var(--weh-deep-clay);
+  text-decoration: none;
+}
+
+.weh-contact-card a:hover {
+  text-decoration: underline;
+}
+
+.weh-social-links {
+  display: flex;
+  gap: var(--weh-spacing-md);
+  margin-top: var(--weh-spacing-sm);
+}
+
+.weh-social-links a {
+  color: var(--weh-deep-clay);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.weh-social-links a:hover {
+  text-decoration: underline;
+}
+
+/* Newsletter Section */
+.weh-newsletter-section {
+  background: linear-gradient(135deg, var(--weh-deep-clay) 0%, var(--weh-urban-slate) 100%);
+  color: var(--weh-soft-ivory);
+  text-align: center;
+}
+
+.weh-newsletter-section h2,
+.weh-newsletter-section p {
+  color: var(--weh-soft-ivory);
+}
+
+.weh-newsletter-cta {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.weh-newsletter-cta h2 {
+  font-size: 32px;
+  margin-bottom: var(--weh-spacing-sm);
+}
+
+.weh-newsletter-cta p {
+  margin-bottom: var(--weh-spacing-lg);
+  opacity: 0.9;
+}
+
+/* ============================================
+   18. Mobile UX Optimizations (Issue #11)
+   ============================================ */
+
+/* Hero Section - Mobile: Vertical Stack, CTA Visible Above Fold */
+@media (max-width: 768px) {
+  .weh-hero-banner {
+    min-height: auto;
+    padding: var(--weh-spacing-lg) 0;
+  }
+  
+  .weh-hero-slide {
+    flex-direction: column;
+    gap: var(--weh-spacing-lg);
+    padding: var(--weh-spacing-md);
+  }
+  
+  .weh-hero-content {
+    order: 1;
+    text-align: center;
+    padding: 0;
+    max-width: 100%;
+  }
+  
+  .weh-hero-content h1 {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: var(--weh-spacing-sm);
+  }
+  
+  .weh-hero-subtitle {
+    font-size: 16px;
+    margin-bottom: var(--weh-spacing-md);
+  }
+  
+  .weh-hero-cta {
+    flex-direction: column;
+    gap: var(--weh-spacing-sm);
+    margin-top: var(--weh-spacing-md);
+  }
+  
+  .weh-hero-cta .weh-galaxy-btn {
+    width: 100%;
+    min-height: 48px; /* Touch target size */
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+  
+  .weh-hero-image {
+    order: 2;
+    width: 100%;
+    aspect-ratio: 4 / 5; /* 4:5 ratio for mobile */
+    object-fit: cover;
+    border-radius: var(--weh-radius-lg);
+  }
+  
+  .weh-hero-dots {
+    margin-top: var(--weh-spacing-md);
+  }
+}
+
+/* Trust Bar - Mobile: Single Row Scroll, Height Limit, No Logo Overlap */
+@media (max-width: 768px) {
+  .weh-trust-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    gap: var(--weh-spacing-sm);
+    padding: var(--weh-spacing-sm) var(--weh-spacing-md);
+    max-height: 64px;
+    position: relative;
+    z-index: 10; /* Below header but above content */
+    background-color: var(--weh-soft-ivory);
+    border-bottom: 1px solid rgba(62, 74, 82, 0.1);
+  }
+  
+  .weh-trust-bar::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  .weh-trust-bar .weh-galaxy-chip {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 8px 14px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Hide tooltip on mobile (touch devices) */
+  .weh-trust-bar [data-weh-tooltip]::after {
+    display: none;
+  }
+}
+
+/* Content Modules - Mobile: Single Column Cards + Horizontal Scroll */
+@media (max-width: 768px) {
+  /* Shop by Space Grid */
+  .weh-space-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--weh-spacing-md);
+  }
+  
+  .weh-space-card {
+    width: 100%;
+    min-height: 200px;
+  }
+  
+  /* Best Sellers / Product Slider */
+  .weh-product-slider {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--weh-spacing-md);
+    padding-bottom: var(--weh-spacing-sm);
+    scroll-snap-type: x mandatory;
+  }
+  
+  .weh-product-card {
+    flex: 0 0 calc(100% - var(--weh-spacing-md));
+    max-width: calc(100% - var(--weh-spacing-md));
+    scroll-snap-align: start;
+  }
+  
+  /* Inspiration Grid */
+  .weh-inspiration-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--weh-spacing-md);
+  }
+  
+  .weh-inspiration-card {
+    width: 100%;
+  }
+  
+  /* Series Cards */
+  .weh-series-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--weh-spacing-lg);
+  }
+  
+  /* Testimonials Grid */
+  .weh-testimonials-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--weh-spacing-md);
+  }
+  
+  /* Philosophy Grid */
+  .weh-philosophy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--weh-spacing-lg);
+  }
+  
+  .weh-philosophy-image {
+    order: -1; /* Image first on mobile */
+  }
+  
+  .weh-philosophy-image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--weh-radius-lg);
+  }
+}
+
+/* Footer - Mobile: Clean Layout, Remove Debug Text */
+@media (max-width: 768px) {
+  .weh-footer {
+    padding: var(--weh-spacing-xl) var(--weh-spacing-md);
+  }
+  
+  .weh-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--weh-spacing-lg);
+  }
+  
+  .weh-footer-links {
+    margin-bottom: var(--weh-spacing-md);
+  }
+  
+  .weh-footer-links h4 {
+    font-size: 16px;
+    margin-bottom: var(--weh-spacing-sm);
+  }
+  
+  .weh-footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .weh-footer-links li {
+    margin-bottom: var(--weh-spacing-xs);
+  }
+  
+  .weh-footer-links a {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--weh-text-secondary);
+    text-decoration: none;
+  }
+  
+  .weh-footer-links a:hover {
+    color: var(--weh-deep-clay);
+    text-decoration: underline;
+  }
+  
+  .weh-footer-bottom {
+    margin-top: var(--weh-spacing-lg);
+    padding-top: var(--weh-spacing-lg);
+    border-top: 1px solid rgba(62, 74, 82, 0.1);
+    text-align: center;
+  }
+  
+  .weh-footer-bottom p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: var(--weh-spacing-xs);
+    max-width: none;
+  }
+  
+  /* Hide any debug text like /html */
+  .weh-footer *:contains("/html"),
+  .weh-footer *:contains("&lt;html"),
+  .weh-footer *:contains("&lt;/html") {
+    display: none !important;
+  }
+}
+
+/* Global Mobile Touch Targets */
+@media (max-width: 768px) {
+  button,
+  .weh-btn,
+  a.weh-btn,
+  .weh-galaxy-btn,
+  input[type="submit"],
+  .add_to_cart_button {
+    min-height: 44px; /* iOS/Android touch target */
+    min-width: 44px;
+    padding: 12px 20px;
+  }
+  
+  .weh-hero-title {
+    font-size: 32px;
+  }
+  
+  .weh-quick-links-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .weh-contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .weh-shipping-returns-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .weh-installation-tabs {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .weh-installation-tab {
+    border-bottom: 1px solid rgba(62, 74, 82, 0.1);
+    border-radius: 0;
+  }
+  
+  .weh-installation-tab-active {
+    border-bottom-color: var(--weh-deep-clay);
+  }
 }
 
